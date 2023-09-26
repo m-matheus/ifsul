@@ -1,0 +1,10 @@
+/*Modificando o tamanho dos elementos*/
+p {
+    background-color: lightblue; /*Define a cor de fundo para facilitar a visialização*/
+    height: 100px; /*Define a altura que pode ser definida em pixels ou porcentagem*/
+    width: 50%; /*Define a largura que pode ser definida em pixels ou porcentagem*/
+    /*max-width: 600px; /*Define a largura máxima*/
+    /*min-width: 600px; /*Define a largura mínima*/
+    /*max-height: 200px; /*Define a altura máxima*/
+    /*min-height: 50px; /*Define a altura mínima*/
+}

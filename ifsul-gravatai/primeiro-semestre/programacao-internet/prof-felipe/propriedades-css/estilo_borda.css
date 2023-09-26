@@ -1,0 +1,21 @@
+/*Propriedades para adicionar o modificar bordas nos elementos*/
+p {
+    border-style: solid; /*Define uma borda solida*/
+    /*border-style: dotted; /*Define uma borda com pontos*/
+    /*border-style: dashed; /*Define uma borda tracejada*/
+    /*border-left-style: dotted; /*Define o formato da borda esquerda*/
+    /*border-right-style: dotted; /*Define o formato da borda direita*/
+    /*border-top-style: dotted; /*Define o formato da borda superior*/
+    /*border-bottom-style: dotted; /*Define o formato da borda inferior*/
+    border-width: 10px; /*Define a largura da borda*/
+    /*border-left-width: 5px; /*Define a largura da borda esquerda*/
+    /*border-right-width: 5px; /*Define a largura da borda direita*/
+    /*border-top-width: 5px; /*Define a largura da borda superior*/
+    /*border-bottom-width: 5px; /*Define a largura da borda inferior*/
+    border-color: red; /*Define a cor da borda*/
+    /*border-left-color: blue; /*Define a cor da borda esquerda*/
+    /*border-right-color: blue; /*Define a cor da borda direita*/
+    /*border-top-color: blue; /*Define a cor da borda superior*/
+    /*border-bottom-color: blue; /*Define a cor da borda inferior*/
+    border-radius: 12px; /*Define o quanto a borda será arredondada*/
+}

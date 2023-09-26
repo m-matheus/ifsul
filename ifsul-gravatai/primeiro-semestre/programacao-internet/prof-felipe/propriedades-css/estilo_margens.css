@@ -1,0 +1,9 @@
+/*Propriedades de definição das margens de um elemento*/
+p {
+    border-style: solid; /*Define uma borda solida para facilitar a visualização*/
+    margin-left: 50px; /*Define a margem esquerda em pixels ou porcentagem*/
+    margin-right: 10%; /*Define a margem direita em pixels ou porcentagem*/
+    margin-top: 5%; /*Define a margem superior em pixels ou porcentagem*/
+    margin-bottom: 50px; /*Define a margem inferior em pixels ou porcentagem*/
+    /*margin: 5px 5px 5px 5px; /*SImplifica a definição das margens na seguinte ordem: top right bottom left*/
+}

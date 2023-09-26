@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <title> Exemplo Animação jQuery</title>
+
+        <script>
+            $(document).ready(function(){ //Faz com que o jQuery seja executado apenas depois de a página carregar
+                $("#hide").click(function(){
+                    $("p").hide(); //Esconde o texto
+                });
+                $("#show").click(function(){
+                    $("p").show(); //Mostra o texto
+                });
+                $("#fadeOut").click(function(){
+                    $("p").fadeOut(); //Faz o texto desaparecer aos poucos
+                });
+                $("#fadeIn").click(function(){
+                    $("p").fadeIn(); //Faz o texto aparecer aos poucos
+                });
+            });
+        </script>
+    </head>
+    <body>
+
+        <p> O rato roeu a roupa do rei de Roma! </p>
+
+        <button id="hide">Esconde Texto</button>
+        <button id="show">Mostra Texto</button><br>
+        <button id="fadeOut">FadeOut</button>
+        <button id="fadeIn">FadeIn</button>
+
+    </body>
+</html>

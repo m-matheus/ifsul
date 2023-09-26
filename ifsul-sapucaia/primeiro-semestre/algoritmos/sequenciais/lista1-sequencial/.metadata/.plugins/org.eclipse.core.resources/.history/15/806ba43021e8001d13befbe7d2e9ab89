@@ -1,0 +1,16 @@
+import java.util.Scanner;
+public class Main 
+{
+
+	public static void main(String[] args) 
+	{
+		Scanner teclado = new Scanner(System.in);
+		int dias = teclado.nextInt();
+		int meses = teclado.nextInt();
+		int anos = teclado.nextInt();
+		int idade = dias + (meses * 30) + (anos * 360);
+		System.out.printf("%d\n", idade);
+		
+	}
+
+}

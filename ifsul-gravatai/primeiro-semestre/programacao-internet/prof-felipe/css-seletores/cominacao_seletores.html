@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Exemplo Combinação de Seletores</title>
+    <style>
+        span p {
+            color: yellow;
+        }
+        div > p {
+            color: blue;
+        }
+        div + p {
+            color: red;
+        }
+        p ~ ul {
+            color: green;
+        }
+    </style>
+</head>
+<body>
+
+    <span> <p>Texto em Amarelo </p> </span>
+
+    <div>
+        <p>Texto em Azul</p>
+        <ol>
+            <li> <p>Item 1 normal</p> </li>
+            <li> <p>Item 2 normal</p> </li>
+            <li> <p>Item 3 normal</p> </li>
+        </ol>
+    </div>
+
+    <p>Texto em Vermelho</p>
+
+    <p>Texto normal</p>
+
+    <ul>
+        <li>Item 1 em Verde</li>
+        <li>Item 2 em Verde</li>
+        <li>Item 3 em Verde</li>
+    </ul>
+
+</body>
+</html>

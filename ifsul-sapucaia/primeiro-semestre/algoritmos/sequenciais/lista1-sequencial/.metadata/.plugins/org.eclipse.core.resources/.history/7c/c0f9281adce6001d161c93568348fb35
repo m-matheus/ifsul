@@ -1,0 +1,17 @@
+import java.util.Scanner;
+public class Main 
+{
+
+	public static void main(String[] args) 
+	{
+		Scanner teclado = new Scanner(System.in);
+		double P = teclado.nextDouble();
+		double C = teclado.nextDouble();
+		int V = teclado.nextInt();
+		int R = teclado.nextInt();
+		teclado.close();
+		double combustivelMin = ((P) / 1000) / C;
+		System.out.printf("%.1f litros", combustivelMin);
+	}
+
+}

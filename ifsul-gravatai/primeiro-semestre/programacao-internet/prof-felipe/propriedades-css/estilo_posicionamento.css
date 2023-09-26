@@ -1,0 +1,14 @@
+img {
+    float: right; /*O elemento flutua à direita de seu contêiner*/
+    /*float: left; /*O elemento flutua à esquerda de seu contêiner*/
+    /*float: none; /*O elemento não flutua (será exibido exatamente onde ocorre no texto). Isso é padrão*/
+    /*float: inherit; /*O elemento herda o valor float de seu pai*/
+    /*position: static; /*Elementos estáticos posicionados não são afetados pelas propriedades top, bottom, right e left. É o padrão*/
+    /*position: absolute; /*Elementos são posicionados em relação ao seu elemento pai*/
+    /*position: fixed; /*Elementos são posicionados em relação à janela de visualização, o que significa que ele sempre permanece no mesmo lugar, mesmo que a página seja rolada*/
+    /*position: relative; /*Elementos são posicionados em relação à sua posição normal*/
+    /*position: sticky; /*Elementos são posicionados com base na posição de rolagem do usuário*/
+    /*top: 0; /*Define o elemento na parte superior da página*/
+    /*right: 0; /*Define o elemento na direita da página*/
+    /*z-index: -1; /*Como a imagem tem um índice z de -1, ela será colocada atrás do texto*/
+}

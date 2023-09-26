@@ -1,0 +1,140 @@
+/*background-color: lightblue; /*Define a cor de fundo para facilitar a visialização*/
+
+/*height: 100px; /*Define a altura que pode ser definida em pixels ou porcentagem*/
+    /*max-height: 200px; /*Define a altura máxima*/
+    /*min-height: 50px; /*Define a altura mínima*/
+
+/*width: 50%; /*Define a largura que pode ser definida em pixels ou porcentagem*/
+    /*max-width: 600px; /*Define a largura máxima*/
+    /*min-width: 600px; /*Define a largura mínima*/
+
+/*background-image: url("https://www.w3schools.com/html/w3schools.jpg"); /*Carrega a imagem como fundo*/
+
+/*background-repeat: no-repeat; /*Define que a imagem carregada não será repetida*/
+    /*background-repeat: repeat; /*Define que a imagem carregada será repetida em todo o espaço*/
+    /*background-repeat: repeat-x; /*Define que a imagem carregada será repetida apenas na Vertical*/
+    /*background-repeat: repeat-y; /*Define que a imagem carregada será repetida apenas na Horizontal*/
+
+/*background-attachment: fixed; /*Define que a imagem carregada será fixa na tela mesmo rolando o texto*/
+    /*background-attachment: scroll; /*Define que a imagem carregada poderá não será fixa na tela se rolar o texto*/
+
+/*background-position: center left; /*Define a posição da imagem carregada no centro colada na esquerda*/
+    /*background-position: center right; /*Define a posição da imagem carregada no centro colada na direita*/
+    /*background-position: center top; /*Define a posição da imagem carregada no centro colada no topo*/
+    /*background-position: center bottom; /*Define a posição da imagem carregada no centro colada na base*/
+    
+/* background: color > image > position > repeat > [size: n funciona] > attachment
+
+/*border-style: solid; /*Define uma borda solida*/
+    /*border-style: dotted; /*Define uma borda com pontos*/
+    /*border-style: dashed; /*Define uma borda tracejada*/
+    /*border-left-style: dotted; /*Define o formato da borda esquerda*/
+    /*border-right-style: dotted; /*Define o formato da borda direita*/
+    /*border-top-style: dotted; /*Define o formato da borda superior*/
+    /*border-bottom-style: dotted; /*Define o formato da borda inferior*/
+    
+/*border-width: 10px; /*Define a largura da borda*/
+    /*border-left-width: 5px; /*Define a largura da borda esquerda*/
+    /*border-right-width: 5px; /*Define a largura da borda direita*/
+    /*border-top-width: 5px; /*Define a largura da borda superior*/
+    /*border-bottom-width: 5px; /*Define a largura da borda inferior*/
+    
+/*border-color: red; /*Define a cor da borda*/
+    /*border-left-color: blue; /*Define a cor da borda esquerda*/
+    /*border-right-color: blue; /*Define a cor da borda direita*/
+    /*border-top-color: blue; /*Define a cor da borda superior*/
+    /*border-bottom-color: blue; /*Define a cor da borda inferior*/
+    
+/*border-radius: 12px; /*Define o quanto a borda será arredondada*/
+
+/*font-family: "Arial"; /*Define a fonte do texto pelo nome*/
+    /*font-family: serif; /*Define a fonte pelo nome genérico da fonte*/
+    /*font-family: sans-serif; /*Define a fonte pelo nome genérico da fonte*/
+    /*font-family: monospace; /*Define a fonte pelo nome genérico da fonte*/
+    /*font-family: fantasy; /*Define a fonte pelo nome genérico da fonte*/
+    /*font-family: cursive; /*Define a fonte pelo nome genérico da fonte*/
+    
+/*font-size: large; /*Define o tamanho da fonte pelo nome do tamanho*/
+    /*font-size: 50px; /*Define o tamanho da fonte pelo número de pixels*/
+    
+/*font-style: italic; /*Define o estilo da fonte*/
+    
+/*font-weight: bold; /*Define a fonte como negrito*/
+
+/*border-style: solid; /*Define uma borda solida para facilitar a visualização*/
+
+/*margin-left: 50px; /*Define a margem esquerda em pixels ou porcentagem*/
+    
+/*margin-right: 10%; /*Define a margem direita em pixels ou porcentagem*/
+    
+/*margin-top: 5%; /*Define a margem superior em pixels ou porcentagem*/
+    
+/*margin-bottom: 50px; /*Define a margem inferior em pixels ou porcentagem*/
+    
+/*margin: 5px 5px 5px 5px; /*Simplifica a definição das margens na seguinte ordem: top right bottom left*/
+
+/*border-style: solid; /*Define uma borda solida para facilitar a visualização*/
+    
+/*padding-left: 50px; /*Define a padding esquerda em pixels ou porcentagem*/
+    
+/*padding-right: 10%; /*Define a padding direita em pixels ou porcentagem*/
+    
+/*padding-top: 5%; /*Define a padding superior em pixels ou porcentagem*/
+    
+/*padding-bottom: 50px; /*Define a padding inferior em pixels ou porcentagem*/
+    
+/*padding: 5px 5px 5px 5px; /*Simplifica a definição dos paddings na seguinte ordem: top right bottom left*/
+
+/*float: right; /*O elemento flutua à direita de seu contêiner*/
+    /*float: left; /*O elemento flutua à esquerda de seu contêiner*/
+    /*float: none; /*O elemento não flutua (será exibido exatamente onde ocorre no texto). Isso é padrão*/
+    /*float: inherit; /*O elemento herda o valor float de seu pai*/
+    
+/*position: static; /*Elementos estáticos posicionados não são afetados pelas propriedades top, bottom, right e left. É o padrão*/
+    /*position: absolute; /*Elementos são posicionados em relação ao seu elemento pai*/
+    /*position: fixed; /*Elementos são posicionados em relação à janela de visualização, o que significa que ele sempre permanece no mesmo lugar, mesmo que a página seja rolada*/
+    /*position: relative; /*Elementos são posicionados em relação à sua posição normal*/
+    /*position: sticky; /*Elementos são posicionados com base na posição de rolagem do usuário*/
+    
+/*top: 0; /*Define o elemento na parte superior da página*/
+    
+/*right: 0; /*Define o elemento na direita da página*/
+    
+/*z-index: -1; /*Como a imagem tem um índice z de -1, ela será colocada atrás do texto*/
+
+/*color: red; /*Define a cor de um texto com o nome da cor*/
+    /*color: #ff0000; /*Define a cor de um texto com o código em hexadecimal da cor*/
+    /*color: rgb(255,0,0); /*Define a cor de um texto com o código em RGB da cor*/
+
+/*text-align: center; /*Alinha o texto no centro*/
+    /*text-align: left; /*Alinha o texto na esquerda*/
+    /*text-align: right; /*Alinha o texto na direita*/
+    /*text-align: justify; /*Deixa o texto justificado*/
+    
+/*text-decoration: overline; /*Define uma linha sobre o texto*/
+    /*text-decoration: underline; /*Sublinha o texto*/
+    /*text-decoration: line-through; /*Faz um risco no meio do texto*/
+    /*text-transform: lowercase; /*Deixa o texto em minúsculo*/
+    /*text-transform: uppercase; /*Deixa o texto em maiúsculo*/
+    
+/*text-transform: capitalize; /*Deixa a primeira letra de cada palavra em maiúsculo e as demais em minúsculo*/
+    
+/*text-indent: 50px; /*Define o espaçamento da primeira frase de um parágrafo*/
+    
+/*letter-spacing: 2px; /*Define o espaçamento entre as letras*/
+    
+/*line-height: 50px; /*Define o espaçamento entre as linhas*/
+    
+/*word-spacing: 20px; /*Define o espaçamento entre as palavras*/
+    
+/*white-space: nowrap; /*Define como os espaços em branco de um elemento se comporta*/
+    
+/*text-shadow: 2px 2px 5px red; /*Define uma sombra no texto*/
+
+/*
+justify-content: 
+flex-direction: 
+align-itens:
+box-sizing: border-box;
+
+Para centralizar completamente um elemento dentro do outro (vertical e horizontalmente), o primeiro passo é configurar um posicionamento especial do elemento interno usando a declaração CSS "position: absolute", seguida pelas propriedades "top: 50%" e "left: 50%". Em seguida, use a propriedade "transform: translate(-50%, -50%)" para ajustar a posição do elemento interno para que ele fique completamente centralizado dentro do elemento externo.

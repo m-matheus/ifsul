@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title> Exemplo Alterando Elementos HTML </title>
+    </head>
+    <body>
+
+        <p>Este parágrafo será alterado</p>
+
+        <script>            
+            //Seleciona os elemento pela tag, como pode ter mais de um elemento da mesma classe, retorna um array
+            var texto = document.getElementsByTagName("p");
+
+            //Acessando o conteúdo dos elementos pelos índices
+            texto[0].innerHTML = "O parágrafo foi alterado";  //Modificando o conteúdo do elemento
+            texto[0].style.color = "red"; //Modificando uma propriedade css do elemento
+            texto[0].align = "center"; //Adicionando ou alterando (caso já exista) um atributo em um elemento
+            //texto[0].setAttribute("align", "center"); //Outra forma de adicionar ou alterar um atributo em um elemento
+
+        </script>
+    </body>
+</html>

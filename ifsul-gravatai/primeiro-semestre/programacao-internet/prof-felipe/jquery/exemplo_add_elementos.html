@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <title> Exemplo Adicionando Elementos com jQuery</title>
+
+        <script>
+            $(document).ready(function(){ //Faz com que o jQuery seja executado apenas depois de a página carregar
+                $("#btn").click(function(){ //Seleciona o elemento com o id=btn e adiciona um evento de clique
+                    var num = $("#num").val(); //Pegando o valor digitado
+                    $("body").append("<p> Número Digitado: "+ num +" </p>"); //Insere no final da tag body
+                    $("body").prepend("<p> Número Digitado: "+ num +" </p>"); //Insere no inicio da tag body
+                    $("h2").after("<p> Número Digitado: "+ num +" </p>"); //Insere após a tag h2
+                    $("h2").before("<p> Número Digitado: "+ num +" </p>"); //Insere antes a tag h2
+                });
+            });
+        </script>
+    </head>
+    <body>
+
+        <h2>Digite um número: </h2>
+
+        <input type="number" id="num"><br>
+        <input type="button" id="btn" value="Mostrar">
+
+    </body>
+</html>

@@ -1,0 +1,38 @@
+/*Modifica a cor do texto*/
+p#cor {
+    color: red; /*Define a cor de um texto com o nome da cor*/
+    /*color: #ff0000; /*Define a cor de um texto com o código em hexadecimal da cor*/
+    /*color: rgb(255,0,0); /*Define a cor de um texto com o código em RGB da cor*/
+}
+
+/*Modifica o alinhamento do texto*/
+.alinhamento {
+    text-align: center; /*Alinha o texto no centro*/
+    /*text-align: left; /*Alinha o texto na esquerda*/
+    /*text-align: right; /*Alinha o texto na direita*/
+    /*text-align: justify; /*Deixa o texto justificado*/
+}
+
+/*Modifica a decoração do texto*/
+p.decor {
+    text-decoration: overline; /*Define uma linha sobre o texto*/
+    /*text-decoration: underline; /*Sublinha o texto*/
+    /*text-decoration: line-through; /*Faz um risco no meio do texto*/
+}
+
+/*Modifica as letras do texto para maiúsculas ou minúsculas*/
+#transform {
+    /*text-transform: lowercase; /*Deixa o texto em minúsculo*/
+    /*text-transform: uppercase; /*Deixa o texto em maiúsculo*/
+    text-transform: capitalize; /*Deixa a primeira letra de cada palavra em maiúsculo e as demais em minúsculo*/
+}
+
+/*Modifica os espaçamentos das palavras e parágrafos*/
+#espaco {
+    text-indent: 50px; /*Define o espaçamento da primeira frase de um parágrafo*/
+    /*letter-spacing: 2px; /*Define o espaçamento entre as letras*/
+    /*line-height: 50px; /*Define o espaçamento entre as linhas*/
+    /*word-spacing: 20px; /*Define o espaçamento entre as palavras*/
+    /*white-space: nowrap; /*Define como os espaços em branco de um elemento se comporta*/
+    /*text-shadow: 2px 2px 5px red; /*Define uma sombra no texto*/
+}

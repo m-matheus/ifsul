@@ -1,0 +1,47 @@
+@charset "UTF-8";
+
+table {
+    width: 250px;
+    height: 250px;
+}
+
+table th {
+    border: 2px solid black;
+    
+}
+
+#SE {
+    background-color: darkorange;
+}
+
+#SC {
+    background-color: darkcyan;
+}
+
+#SD {
+    background-color: darkgoldenrod;
+}
+
+#CE {
+    background-color: darkgray;
+}
+
+#CC {
+    background-color: darkgreen;
+}
+
+#CD {
+    background-color: darkkhaki;
+}
+
+#IE {
+    background-color: darkmagenta;
+}
+
+#IC {
+    background-color: darkolivegreen;
+}
+
+#ID {
+    background-color: darkred;
+}

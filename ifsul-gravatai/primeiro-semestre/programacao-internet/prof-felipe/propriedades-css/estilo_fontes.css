@@ -1,0 +1,13 @@
+/*Propriedades de modificação da fonte do texto*/
+p {
+    font-family: "Arial"; /*Define a fonte do texto pelo nome*/
+    /*font-family: serif; /*Define a fonte pelo nome genérico da fonte*/
+    /*font-family: sans-serif; /*Define a fonte pelo nome genérico da fonte*/
+    /*font-family: monospace; /*Define a fonte pelo nome genérico da fonte*/
+    /*font-family: fantasy; /*Define a fonte pelo nome genérico da fonte*/
+    /*font-family: cursive; /*Define a fonte pelo nome genérico da fonte*/
+    font-size: large; /*Define o tamanho da fonte pelo nome do tamanho*/
+    /*font-size: 50px; /*Define o tamanho da fonte pelo número de pixels*/
+    /*font-style: italic; /*Define o estilo da fonte*/
+    /*font-weight: bold; /*Define a fonte como negrito*/
+}

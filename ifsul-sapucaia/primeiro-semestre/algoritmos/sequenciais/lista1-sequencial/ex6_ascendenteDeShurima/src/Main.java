@@ -1,0 +1,14 @@
+import java.util.Scanner;
+public class Main 
+{
+
+	public static void main(String[] args) 
+	{
+		Scanner teclado = new Scanner(System.in);
+		double X = teclado.nextDouble();
+		teclado.close();
+		double forca = X * 31557600;
+		System.out.printf("%.2f\n", forca);
+	}
+
+}

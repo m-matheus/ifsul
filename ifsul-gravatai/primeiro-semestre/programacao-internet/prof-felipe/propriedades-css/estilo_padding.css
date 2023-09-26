@@ -1,0 +1,9 @@
+/*Propriedades de definição dos paddings de um elemento*/
+p {
+    border-style: solid; /*Define uma borda solida para facilitar a visualização*/
+    padding-left: 50px; /*Define a padding esquerda em pixels ou porcentagem*/
+    padding-right: 10%; /*Define a padding direita em pixels ou porcentagem*/
+    padding-top: 5%; /*Define a padding superior em pixels ou porcentagem*/
+    padding-bottom: 50px; /*Define a padding inferior em pixels ou porcentagem*/
+    /*padding: 5px 5px 5px 5px; /*Simplifica a definição dos paddings na seguinte ordem: top right bottom left*/
+}

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title> Exemplo Encontrando Elementos HTML </title>
+    </head>
+    <body>
+
+        <h2>Encontrando Elementos</h2>
+        <div id="exemplo">Exemplo <strong>ID</strong></div>
+        <div class="classe">Exemplo <strong>Class</strong></div>
+        <div id="seletor" class="classe">Exemplo <strong>Seletor CSS</strong></div><br>
+
+        <script>
+            //Seleção de elementos por ID, Classe, Nome da Tag, Name ou querySelector (como css)
+
+            //Seleciona o primeiro elemento que tiver o id correspondente
+            var divID = document.getElementById("exemplo");
+            document.write("<br> Conteúdo do primeiro elemento que tem o id correspondente: " + divID.innerHTML);
+
+            //Seleciona os elementos pela classe, como pode ter mais de um elemento da mesma classe, retorna um array
+            var divClass = document.getElementsByClassName("classe");
+            //Acessando o conteúdo dos elementos pelos índices
+            document.write("<br>Índice 0 buscando pela classe: " + divClass[0].innerHTML);
+            document.write("<br>Índice 1 buscando pela classe: " + divClass[1].innerHTML);
+
+            //Seleciona os elemento pela tag, como pode ter mais de um elemento da mesma classe, retorna um array
+            var texto = document.getElementsByTagName("h2");
+            //Acessando o conteúdo dos elementos pelos índices
+            document.write("<br>Índice 0 buscando pela nome da Tag: " + texto[0].innerHTML);
+
+            // Selecionar utilizando sintaxe CSS, assim como o seletor por id, busca o primeiro que encontrar
+            var seletor = document.querySelector("div#seletor");
+            //Acessando o conteúdo dos elementos pelos índices
+            document.write("<br>Conteúdo do elemento buscado pelo querySelector: " + seletor.innerHTML);
+
+        </script>
+    </body>
+</html>

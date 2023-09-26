@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <title> Exemplo jQuery</title>
+
+        <script>
+            $(document).ready(function(){ //Faz com que o jQuery seja executado apenas depois de a página carregar
+                $("#btn").click(function(){ //Seleciona o elemento com o id=btn e adiciona um evento de clique
+                    $(this).attr("value", "Processando..."); //Altera o atributo value do elemento button, (this representa o próprio elemento selecionado)
+                    $("p").html("Aguarde o processamento"); //Modifica o conteúdo da tag p
+                });
+            });
+        </script>
+    </head>
+    <body>
+
+        <h2>Exemplo</h2>
+        <p>Click no botão para imprimir</p>
+        <input type="button" id="btn" value="Aperte para Imprimir">
+
+
+    </body>
+</html>

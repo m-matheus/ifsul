@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <title> Exemplo CSS jQuery</title>
+
+        <style>
+            .bg{
+                background-color: lightblue;
+            }
+
+            .cor{
+                color: red;
+            }
+
+            .center{
+                text-align: center;
+            }
+        </style>
+
+        <script>
+            $(document).ready(function(){ //Faz com que o jQuery seja executado apenas depois de a página carregar
+                $("#btn").click(function(){ //Seleciona o elemento com o id=btn e adiciona um evento de clique
+                    var cor = $("h2").css("color"); //Obtendo a propriedade css
+                    $("p").css("color", cor); //Alterando a propriedade css
+                    $("h2").css({ //Alterando mais de uma propriedade css
+                        "font-size":"small",
+                        "color":"blue"
+                    });
+
+                    $("h2").addClass("bg center"); //Adicionando as classes bg e center
+                    $("h2").removeClass("cor"); //Removendo a classe cor
+                });
+            });
+        </script>
+    </head>
+    <body>
+
+        <h2 class="cor">Exemplo</h2>
+        <p>Click no botão para imprimir</p>
+        <input type="button" id="btn" value="Aperte para Imprimir"><br><br>
+
+    </body>
+</html>

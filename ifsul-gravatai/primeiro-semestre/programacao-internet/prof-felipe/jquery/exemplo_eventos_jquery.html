@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <title> Exemplo Eventos jQuery</title>
+
+        <script>
+            $(document).ready(function(){ //Faz com que o jQuery seja executado apenas depois de a página carregar
+                $("p").mouseenter(function(){ //Adiciona o evento mouseenter
+                    $(this).css("color", "red");
+                });
+
+                $("p").mouseleave(function(){ //Adiciona o evento mouseleave
+                    $(this).css("color", "blue");
+                });
+
+                $("#btn1").click(function(){ //Botão que desativa o mouseenter
+                    $("p").off("mouseenter");
+                });
+
+                $("#btn2").click(function(){ //Botão que ativa o mouseenter
+                    $("p").on("mouseenter", function () {
+                        $(this).css("color", "red");
+                    });
+                });
+
+            });
+        </script>
+    </head>
+    <body>
+
+        <p> O rato roeu a roupa do rei de Roma! </p>
+
+        <input type="button" id="btn1" value="Desativa Mouseenter"><br><br>
+        <input type="button" id="btn2" value="Ativa Mouseenter">
+
+    </body>
+</html>

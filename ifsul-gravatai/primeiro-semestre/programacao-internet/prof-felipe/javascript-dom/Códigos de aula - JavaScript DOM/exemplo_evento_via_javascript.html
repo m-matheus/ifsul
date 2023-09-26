@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title> Exemplo Eventos via JavaScript </title>
+    </head>
+    <body>
+
+        <p>Click "Data" para executar a função mostrarData()</p>
+        <button id="myBtn">Data</button>
+        <p id="demo"></p>
+
+        <script>
+            //Adicionando o evento quando clicar no botão
+            document.getElementById("myBtn").onclick = mostrarData;
+            function mostrarData() {
+                document.getElementById("demo").innerHTML = Date();
+            }
+        </script>
+
+    </body>
+</html>

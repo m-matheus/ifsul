@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title> Exemplo Métodos do Objeto window JS </title>
+
+        <script>
+            // Exemplo do método prompt com uma mensagem e um valor inicial
+            var nome = prompt("Digite seu nome:", "João Silva");
+            document.write("O nome digitado foi: " + nome);
+
+            //Exemplo do método prompt com uma mensagem e sem valor inicial
+            var num = prompt("Digite um número para ser somado com 2");
+            var numInteiro = parseInt(num); //Convertendo a string para um número inteiro
+            document.write("<br>O número somado por 2 é igual a: " + (numInteiro+2));
+
+            //Exemplo do método alert
+            alert("Bom trabalho, continue assim!");
+
+            //Exemplo do método confirm
+            var resultado = confirm("Clique no Ok ou Cancelar");
+            if(resultado){
+                document.write("<br>Clicou no Ok");
+            }else{
+                document.write("<br>Clicou no Cancelar");
+            }
+        </script>
+
+    </head>
+    <body>
+
+    </body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title> Exemplo Eventos via HTML </title>
+    </head>
+    
+    <body>
+        <!--  O Evento vai ser chamado clicar no parágrafo-->
+        <p onclick="displayDate()">Data atual</p>
+
+        <script>
+            //Função que mostra a data atual
+            function displayDate() {
+                document.getElementById("demo").innerHTML = Date();
+            }
+        </script>
+
+        <p id="demo"></p>
+
+    </body>
+</html>
