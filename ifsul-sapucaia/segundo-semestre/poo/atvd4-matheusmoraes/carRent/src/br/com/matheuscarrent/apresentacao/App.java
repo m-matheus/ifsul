@@ -123,8 +123,15 @@ public class App {
                                             System.out.println("Status: " + veiculo.getStatus());
                                             System.out.println();
                                         }
+                                        int e;
+                                        System.out.println("Deseja alugar algum veiculo?");
+                                        System.out.println("1 - Sim");
+                                        System.out.println("2 - Não");
+                                        e = kb.nextInt();
 
-                                        System.out.println("Digite o ID do veículo que deseja alugar: ");
+                                        switch (e) {
+                                            case 1:
+                                                System.out.println("Digite o ID do veículo que deseja alugar: ");
                                         long idVeiculoSelecionado = kb.nextLong();
 
                                         Veiculo veiculoSelecionado = null;
@@ -153,6 +160,14 @@ public class App {
                                         } else {
                                             System.out.println("Veículo não encontrado.");
                                         }
+                                                break;
+                                            case 2:
+                                            break;
+                                            
+                                            default:
+                                                break;
+                                        }
+                                        
                                     } else {
                                         System.out.println("Nenhum veículo disponível para alugar.");
                                     }
