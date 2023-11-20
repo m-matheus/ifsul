@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-MonitoraifsulApplication<monitoraifsul>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "br.com.ifsul.monitoraifsul.MonitoraifsulApplication",
+            "projectName": "monitoraifsul",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
