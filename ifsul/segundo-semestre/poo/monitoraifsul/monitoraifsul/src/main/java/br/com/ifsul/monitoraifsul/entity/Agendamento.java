@@ -2,10 +2,14 @@ package br.com.ifsul.monitoraifsul.entity;
 
 import java.sql.Date;
 
+import org.hibernate.annotations.ManyToAny;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Agendamento {
@@ -17,6 +21,20 @@ public class Agendamento {
     private String local;
     private int vagas;
     
+    
+    // Muitos para um: lado dominante, precisa usar o JoinColumn para especificar qual coluna que faz a ligação com o lado não dominante.
+    @ManyToOne
+    @JoinColumn(name="usuario_id")
+    private Estudante estudanteMonitor;
+
+
+    @ManyToOne
+    @JoinColumn(name="usuario_id")
+    private Estudante estudanteNormal;
+
+
+
+
     public Agendamento() {}
 
     public Agendamento(long id, Date data, String hora, String local, int vagas) {

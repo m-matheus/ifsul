@@ -1,9 +1,12 @@
 package br.com.ifsul.monitoraifsul.entity;
 
+import java.util.List;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Disciplina {
@@ -13,6 +16,13 @@ public class Disciplina {
     private String materia;
     private String area;
     
+    
+    @OneToMany(mappedBy = "disciplina")
+    private List<Estudante> estudantesDisciplina;
+
+
+
+
     public Disciplina() {}
 
     public Disciplina(long id, String materia, String area) {

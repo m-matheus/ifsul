@@ -6,6 +6,10 @@
 ### Pesquisar
 
 - Notação para Herança
+    - <https://www.baeldung.com/hibernate-inheritance>
+
+- Entidades (Criando entidades)
+    - <https://spring.io/guides/gs/accessing-data-jpa/>
 
 - Relacionamentos (One-to-One, One-to-Many, Many-to-Many)
     - <https://www.baeldung.com/spring-data-rest-relationships>

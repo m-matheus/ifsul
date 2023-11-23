@@ -1,6 +1,11 @@
 package br.com.ifsul.monitoraifsul.entity;
 
+import java.util.List;
+
 import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Estudante extends Usuario{
@@ -10,6 +15,22 @@ public class Estudante extends Usuario{
     private boolean monitor;
     
     
+    // Um para muitos: lado não dominante. mappedby = "variavel do lado dominante a que se refere"
+    @OneToMany(mappedBy = "estudanteMonitor")
+    private List<Agendamento> agendaMonitor;
+
+    @OneToMany(mappedBy = "estudanteNormal")
+    private List<Agendamento> agendaNormal;
+
+
+    @ManyToOne
+    @JoinColumn(name = "disciplina_id")
+    private Disciplina disciplina;
+    
+
+
+
+
     public Estudante() {
         super();
     }
