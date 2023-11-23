@@ -1,7 +1,6 @@
 package br.com.ifsul.monitoraifsul.entity;
 
 import java.io.Serializable;
-import java.util.List;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -9,7 +8,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
-import jakarta.persistence.OneToMany;
 
 
 // @Entity: marca que a classe é uma entidade persistente, mostra ao JPA (framework) que a classe deve ser tratada como uma tabela no bd.
