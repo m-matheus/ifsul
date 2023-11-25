@@ -7,4 +7,6 @@ import br.com.ifsul.monitoraifsul.entity.Usuario;
 
 // JpaRepository <Classe a quem ele refere, Tipo do Id>
 @Repository
-public interface UsuarioRepository extends JpaRepository<Usuario, Long> {}
+public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
+    Usuario findByEmail(String email);
+}

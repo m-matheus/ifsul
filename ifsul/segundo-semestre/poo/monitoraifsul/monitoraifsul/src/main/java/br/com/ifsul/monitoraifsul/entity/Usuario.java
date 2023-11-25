@@ -2,6 +2,7 @@ package br.com.ifsul.monitoraifsul.entity;
 
 import java.io.Serializable;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -21,6 +22,7 @@ public class Usuario implements Serializable{
     @GeneratedValue(strategy = GenerationType.AUTO)
     protected long id;
     protected String nome;
+    @Column(unique = true)
     protected String email;
     protected String senha;
     
