@@ -3,18 +3,20 @@ package br.com.ifsul.monitoraifsul.entity;
 import java.io.Serializable;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.DiscriminatorColumn;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
-
+import jakarta.persistence.DiscriminatorType;
 
 // @Entity: marca que a classe é uma entidade persistente, mostra ao JPA (framework) que a classe deve ser tratada como uma tabela no bd.
 @Entity
 // Faz com que cada herança tenha a sua própria tabela.
 @Inheritance(strategy = InheritanceType.JOINED)
+@DiscriminatorColumn(name = "dtype", discriminatorType = DiscriminatorType.STRING)
 public class Usuario implements Serializable{
     // @Id: marca a variável como chave primária.
     // @GeneratedValue: gera valores automático para a variável.

@@ -41,8 +41,7 @@ public class UsuarioService {
         String senha = scanner.nextLine();
 
         System.out.print("Você é um professor? (true/false): ");
-        boolean isProfessor = scanner.nextBoolean();
-        scanner.nextLine(); 
+        boolean isProfessor = Boolean.parseBoolean(scanner.nextLine());
 
         Usuario usuario;
 
@@ -65,12 +64,10 @@ public class UsuarioService {
             String curso = scanner.nextLine();
 
             System.out.print("Digite o semestre: ");
-            int semestre = scanner.nextInt();
-            scanner.nextLine(); 
+            int semestre = Integer.parseInt(scanner.nextLine());
 
             System.out.print("Você é um monitor? (true/false): ");
-            boolean isMonitor = scanner.nextBoolean();
-            scanner.nextLine(); 
+            boolean isMonitor = Boolean.parseBoolean(scanner.nextLine());
 
             Estudante estudante = new Estudante();
             estudante.setNome(nome);
@@ -82,10 +79,8 @@ public class UsuarioService {
             estudante.setMonitor(isMonitor);
 
             if (isMonitor) {
-                // Associar o estudante a uma disciplina para monitoria
                 System.out.print("Digite o ID da disciplina para monitoria: ");
-                long disciplinaId = scanner.nextLong();
-                scanner.nextLine(); 
+                long disciplinaId = Long.parseLong(scanner.nextLine());
 
                 Disciplina disciplina = disciplinaRepository.findById(disciplinaId)
                         .orElseThrow(() -> new RuntimeException("Disciplina não encontrada com o ID: " + disciplinaId));

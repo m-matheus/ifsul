@@ -1,16 +1,26 @@
 package br.com.ifsul.monitoraifsul;
 
+import java.util.Scanner;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import java.util.Scanner;
+import br.com.ifsul.monitoraifsul.service.UsuarioService;
 
 @SpringBootApplication
-public class MonitoraifsulApplication {
+public class MonitoraifsulApplication implements CommandLineRunner {
+
+    @Autowired
+    private UsuarioService usuarioService;
 
     public static void main(String[] args) {
         SpringApplication.run(MonitoraifsulApplication.class, args);
+    }
 
+    @Override
+    public void run(String... args) throws Exception {
         Scanner scanner = new Scanner(System.in);
         boolean sair = false;
 
@@ -24,10 +34,9 @@ public class MonitoraifsulApplication {
             int opcao = scanner.nextInt();
             scanner.nextLine();
 
-			
             switch (opcao) {
                 case 1:
-                    cadastrarUsuario(scanner);
+                    usuarioService.cadastrarUsuario(scanner);
                     break;
                 case 2:
                     // Adicione lógica de login aqui
@@ -43,9 +52,5 @@ public class MonitoraifsulApplication {
 
         System.out.println("Obrigado por usar o sistema!");
         scanner.close();
-    }
-
-    private static void cadastrarUsuario(Scanner scanner) {
-        // Lógica de cadastro de usuário aqui
     }
 }
