@@ -14,21 +14,19 @@ public class Disciplina {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     private String materia;
-    private String area;
-    
     
     @OneToMany(mappedBy = "disciplina")
     private List<Estudante> estudantesDisciplina;
 
+    @OneToMany(mappedBy = "disciplina")
+    private List<Agendamento> agendamentos;
 
-
-
+    
     public Disciplina() {}
 
-    public Disciplina(long id, String materia, String area) {
+    public Disciplina(long id, String materia) {
         this.id = id;
         this.materia = materia;
-        this.area = area;
     }
 
     public long getId() {
@@ -47,13 +45,19 @@ public class Disciplina {
         this.materia = materia;
     }
 
-    public String getArea() {
-        return area;
+    public List<Estudante> getEstudantesDisciplina() {
+        return estudantesDisciplina;
     }
 
-    public void setArea(String area) {
-        this.area = area;
+    public void setEstudantesDisciplina(List<Estudante> estudantesDisciplina) {
+        this.estudantesDisciplina = estudantesDisciplina;
     }
 
-    
+    public List<Agendamento> getAgendamentos() {
+        return agendamentos;
+    }
+
+    public void setAgendamentos(List<Agendamento> agendamentos) {
+        this.agendamentos = agendamentos;
+    }
 }

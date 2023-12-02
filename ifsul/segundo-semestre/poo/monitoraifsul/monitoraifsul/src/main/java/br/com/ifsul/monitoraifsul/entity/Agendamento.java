@@ -18,7 +18,7 @@ public class Agendamento {
     private String hora;
     private String local;
     private int vagas;
-    
+
     
     // Muitos para um: lado dominante, precisa usar o JoinColumn para especificar qual coluna que faz a ligação com o lado não dominante.
     @ManyToOne
@@ -30,8 +30,9 @@ public class Agendamento {
     @JoinColumn(name="usuario_id", insertable=false, updatable=false)
     private Estudante estudanteNormal;
 
-
-
+    @ManyToOne
+    @JoinColumn(name="disciplina_id")
+    private Disciplina disciplina;
 
     public Agendamento() {}
 
