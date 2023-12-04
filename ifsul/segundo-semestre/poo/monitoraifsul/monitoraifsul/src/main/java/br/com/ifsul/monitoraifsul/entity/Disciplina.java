@@ -6,6 +6,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 
 @Entity
@@ -21,7 +23,11 @@ public class Disciplina {
     @OneToMany(mappedBy = "disciplina")
     private List<Agendamento> agendamentos;
 
-    
+    @ManyToOne
+    @JoinColumn(name = "professor_id")
+    private Professor professor;
+
+
     public Disciplina() {}
 
     public Disciplina(long id, String materia) {

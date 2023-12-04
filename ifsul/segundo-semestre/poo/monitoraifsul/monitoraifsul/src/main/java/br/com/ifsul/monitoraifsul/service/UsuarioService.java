@@ -1,5 +1,6 @@
 package br.com.ifsul.monitoraifsul.service;
 
+import java.util.Optional;
 import java.util.Scanner;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +30,8 @@ public class UsuarioService {
     @Autowired
     private DisciplinaRepository disciplinaRepository;
 
+
+    // Cadastra o usuario.
     public void cadastrarUsuario(Scanner scanner) {
         System.out.println("-------- Cadastro de Usuário --------");
         System.out.print("Digite o nome: ");
@@ -92,5 +95,54 @@ public class UsuarioService {
         }
 
         System.out.println("Usuário cadastrado com sucesso!");
+    }
+
+    // Faz login
+    // public Usuario fazerLogin(String email, String senha) {
+    //     Usuario usuario = usuarioRepository.findByEmail(email);
+
+    //     if (usuario != null && usuario.getSenha().equals(senha)) {
+    //         return usuario;
+    //     } else {
+    //         throw new RuntimeException("Usuário não encontrado ou senha incorreta para o email: " + email);
+    //     }
+    // }
+
+    public Usuario fazerLogin(Scanner scanner) {
+        System.out.println("-------- Login --------");
+        System.out.print("Digite o email: ");
+        String email = scanner.nextLine();
+
+        System.out.print("Digite a senha: ");
+        String senha = scanner.nextLine();
+
+        Usuario usuario = usuarioRepository.findByEmail(email);
+
+        if (usuario != null && usuario.getSenha().equals(senha)) {
+            return usuario;
+        } else {
+            throw new RuntimeException("Usuário não encontrado ou senha incorreta para o email: " + email);
+        }
+    }
+
+    public void cadastrarDisciplina(Scanner scanner, Usuario usuario) {
+        if (usuario instanceof Professor) {
+            System.out.println("-------- Cadastro de Disciplina --------");
+            System.out.print("Digite o nome da disciplina: ");
+            String nomeDisciplina = scanner.nextLine();
+
+            Disciplina disciplina = new Disciplina();
+            disciplina.setMateria(nomeDisciplina);
+
+            Disciplina savedDisciplina = disciplinaRepository.save(disciplina);
+
+            Professor professor = (Professor) usuario;
+            professor.adicionarDisciplina(savedDisciplina);
+            professorRepository.save(professor);
+
+            System.out.println("Disciplina cadastrada com sucesso!");
+        } else {
+            System.out.println("Apenas professores podem cadastrar disciplinas.");
+        }
     }
 }
