@@ -1,5 +1,6 @@
 package br.com.ifsul.monitoraifsul.service;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
 
@@ -81,15 +82,15 @@ public class UsuarioService {
             estudante.setSemestre(semestre);
             estudante.setMonitor(isMonitor);
 
-            if (isMonitor) {
-                System.out.print("Digite o ID da disciplina para monitoria: ");
-                long disciplinaId = Long.parseLong(scanner.nextLine());
+            // if (isMonitor) {
+            //     System.out.print("Digite o ID da disciplina para monitoria: ");
+            //     long disciplinaId = Long.parseLong(scanner.nextLine());
 
-                Disciplina disciplina = disciplinaRepository.findById(disciplinaId)
-                        .orElseThrow(() -> new RuntimeException("Disciplina não encontrada com o ID: " + disciplinaId));
+            //     Disciplina disciplina = disciplinaRepository.findById(disciplinaId)
+            //             .orElseThrow(() -> new RuntimeException("Disciplina não encontrada com o ID: " + disciplinaId));
 
-                estudante.setDisciplina(disciplina);
-            }
+            //     estudante.setDisciplina(disciplina);
+            // }
 
             usuario = estudanteRepository.save(estudante);
         }
@@ -127,7 +128,7 @@ public class UsuarioService {
             Disciplina savedDisciplina = disciplinaRepository.save(disciplina);
 
             Professor professor = (Professor) usuario;
-//            professor.adicionarDisciplina(savedDisciplina);
+            // professor.getDisciplinas().add(savedDisciplina);
             professorRepository.save(professor);
 
             System.out.println("Disciplina cadastrada com sucesso!");
@@ -135,4 +136,31 @@ public class UsuarioService {
             System.out.println("Apenas professores podem cadastrar disciplinas.");
         }
     }
+
+    public List<Estudante> listarEstudantesMonitores() {
+        return estudanteRepository.findByMonitor(true);
+    }
+
+    public List<Disciplina> listarDisciplinasDisponiveis() {
+        return disciplinaRepository.findAll();
+    }
+
+    public void associarDisciplina(Scanner scanner, Estudante estudante) {
+        if (estudante.isMonitor()) {
+            System.out.print("Digite o ID da disciplina que deseja associar: ");
+            long disciplinaId = scanner.nextLong();
+            scanner.nextLine();
+    
+            Disciplina disciplinaAssociada = disciplinaRepository.findById(disciplinaId)
+                    .orElseThrow(() -> new RuntimeException("Disciplina não encontrada com o ID: " + disciplinaId));
+    
+            estudante.setDisciplina(disciplinaAssociada);
+            estudanteRepository.save(estudante);
+    
+            System.out.println("Associado à disciplina com sucesso!");
+        } else {
+            System.out.println("Você não é um estudante monitor. Não pode associar a uma disciplina.");
+        }
+    }
+    
 }

@@ -5,5 +5,7 @@ import org.springframework.stereotype.Repository;
 
 import br.com.ifsul.monitoraifsul.entity.Disciplina;
 
+
 @Repository
-public interface DisciplinaRepository extends JpaRepository<Disciplina, Long>{}
+public interface DisciplinaRepository extends JpaRepository<Disciplina, Long>{
+}
