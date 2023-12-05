@@ -96,17 +96,7 @@ public class UsuarioService {
 
         System.out.println("Usuário cadastrado com sucesso!");
     }
-
-    // Faz login
-    // public Usuario fazerLogin(String email, String senha) {
-    //     Usuario usuario = usuarioRepository.findByEmail(email);
-
-    //     if (usuario != null && usuario.getSenha().equals(senha)) {
-    //         return usuario;
-    //     } else {
-    //         throw new RuntimeException("Usuário não encontrado ou senha incorreta para o email: " + email);
-    //     }
-    // }
+    
 
     public Usuario fazerLogin(Scanner scanner) {
         System.out.println("-------- Login --------");
@@ -137,7 +127,7 @@ public class UsuarioService {
             Disciplina savedDisciplina = disciplinaRepository.save(disciplina);
 
             Professor professor = (Professor) usuario;
-            professor.adicionarDisciplina(savedDisciplina);
+//            professor.adicionarDisciplina(savedDisciplina);
             professorRepository.save(professor);
 
             System.out.println("Disciplina cadastrada com sucesso!");

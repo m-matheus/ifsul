@@ -3,6 +3,8 @@ package br.com.ifsul.monitoraifsul.entity;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.annotations.CascadeType;
+
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
@@ -16,14 +18,12 @@ public class Professor extends Usuario{
     @OneToMany(mappedBy = "professor")
     private List<Disciplina> disciplinas;
 
-    public void adicionarDisciplina(Disciplina disciplina) {
-        if (disciplinas == null) {
-            disciplinas = new ArrayList<>();
-        }
-        disciplinas.add(disciplina);
-    }
-
-
+//    public void adicionarDisciplina(Disciplina disciplina) {
+//        if (disciplinas == null) {
+//            disciplinas = new ArrayList<>();
+//        }
+//        disciplinas.add(disciplina);
+//    }
 
     
     public Professor() {
