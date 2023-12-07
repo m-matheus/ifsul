@@ -183,8 +183,8 @@ public class UsuarioService {
             agendamento.setDiaSemana(diaSemana);
             agendamento.setTurno(turno);
             agendamento.setVagas(vagas);
-            agendamento.setEstudanteMonitor(estudante);
-            agendamento.setDisciplina(estudante.getDisciplina());
+            // agendamento.setEstudanteMonitor(estudante);
+            // agendamento.setDisciplina(estudante.getDisciplina());
 
             agendamentoRepository.save(agendamento);
 
@@ -196,6 +196,7 @@ public class UsuarioService {
 
     public void selecionarAgendamento(Scanner scanner, Estudante estudante) {
         List<Agendamento> agendamentosDisponiveis = agendamentoRepository.findByDisciplina(estudante.getDisciplina());
+        
 
         if (!agendamentosDisponiveis.isEmpty()) {
             System.out.println("Agendamentos Disponíveis:");

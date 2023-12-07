@@ -10,6 +10,6 @@ import br.com.ifsul.monitoraifsul.entity.Disciplina;
 
 @Repository
 public interface AgendamentoRepository extends JpaRepository<Agendamento, Long> {
-     List<Agendamento> findByDisciplina(Disciplina disciplina);
-
+    // Recupera os agendamentos por disciplina
+    List<Agendamento> findByDisciplina(Disciplina disciplina);
 }
