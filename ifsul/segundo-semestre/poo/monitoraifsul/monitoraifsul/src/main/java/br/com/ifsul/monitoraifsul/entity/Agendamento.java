@@ -1,7 +1,5 @@
 package br.com.ifsul.monitoraifsul.entity;
 
-import java.sql.Date;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -14,9 +12,8 @@ public class Agendamento {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-    private Date data;
-    private String hora;
-    private String local;
+    private String diaSemana;
+    private String turno;
     private int vagas;
 
     
@@ -36,12 +33,15 @@ public class Agendamento {
 
     public Agendamento() {}
 
-    public Agendamento(long id, Date data, String hora, String local, int vagas) {
+    public Agendamento(long id, String diaSemana, String turno, int vagas, Estudante estudanteMonitor,
+            Estudante estudanteNormal, Disciplina disciplina) {
         this.id = id;
-        this.data = data;
-        this.hora = hora;
-        this.local = local;
+        this.diaSemana = diaSemana;
+        this.turno = turno;
         this.vagas = vagas;
+        this.estudanteMonitor = estudanteMonitor;
+        this.estudanteNormal = estudanteNormal;
+        this.disciplina = disciplina;
     }
 
     public long getId() {
@@ -52,28 +52,20 @@ public class Agendamento {
         this.id = id;
     }
 
-    public Date getData() {
-        return data;
+    public String getDiaSemana() {
+        return diaSemana;
     }
 
-    public void setData(Date data) {
-        this.data = data;
+    public void setDiaSemana(String diaSemana) {
+        this.diaSemana = diaSemana;
     }
 
-    public String getHora() {
-        return hora;
+    public String getTurno() {
+        return turno;
     }
 
-    public void setHora(String hora) {
-        this.hora = hora;
-    }
-
-    public String getLocal() {
-        return local;
-    }
-
-    public void setLocal(String local) {
-        this.local = local;
+    public void setTurno(String turno) {
+        this.turno = turno;
     }
 
     public int getVagas() {
@@ -83,6 +75,32 @@ public class Agendamento {
     public void setVagas(int vagas) {
         this.vagas = vagas;
     }
+
+    public Estudante getEstudanteMonitor() {
+        return estudanteMonitor;
+    }
+
+    public void setEstudanteMonitor(Estudante estudanteMonitor) {
+        this.estudanteMonitor = estudanteMonitor;
+    }
+
+    public Estudante getEstudanteNormal() {
+        return estudanteNormal;
+    }
+
+    public void setEstudanteNormal(Estudante estudanteNormal) {
+        this.estudanteNormal = estudanteNormal;
+    }
+
+    public Disciplina getDisciplina() {
+        return disciplina;
+    }
+
+    public void setDisciplina(Disciplina disciplina) {
+        this.disciplina = disciplina;
+    }
+
+    
 
     
 }

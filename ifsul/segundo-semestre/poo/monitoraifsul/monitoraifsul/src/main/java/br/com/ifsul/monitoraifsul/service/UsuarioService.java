@@ -1,16 +1,17 @@
 package br.com.ifsul.monitoraifsul.service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.Scanner;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.com.ifsul.monitoraifsul.entity.Agendamento;
 import br.com.ifsul.monitoraifsul.entity.Disciplina;
 import br.com.ifsul.monitoraifsul.entity.Estudante;
 import br.com.ifsul.monitoraifsul.entity.Professor;
 import br.com.ifsul.monitoraifsul.entity.Usuario;
+import br.com.ifsul.monitoraifsul.repository.AgendamentoRepository;
 import br.com.ifsul.monitoraifsul.repository.DisciplinaRepository;
 import br.com.ifsul.monitoraifsul.repository.EstudanteRepository;
 import br.com.ifsul.monitoraifsul.repository.ProfessorRepository;
@@ -30,6 +31,9 @@ public class UsuarioService {
 
     @Autowired
     private DisciplinaRepository disciplinaRepository;
+
+    @Autowired
+    private AgendamentoRepository agendamentoRepository;
 
 
     // Cadastra o usuario.
@@ -160,6 +164,60 @@ public class UsuarioService {
             System.out.println("Associado à disciplina com sucesso!");
         } else {
             System.out.println("Você não é um estudante monitor. Não pode associar a uma disciplina.");
+        }
+    }
+
+     public void disponibilizarAgendamentos(Scanner scanner, Estudante estudante) {
+        if (estudante.isMonitor() && estudante.getDisciplina() != null) {
+            System.out.print("Digite o dia da semana do agendamento: ");
+            String diaSemana = scanner.nextLine();
+
+            System.out.print("Digite o turno do agendamento: ");
+            String turno = scanner.nextLine();
+
+            System.out.print("Digite o número de vagas disponíveis: ");
+            int vagas = scanner.nextInt();
+            scanner.nextLine();
+
+            Agendamento agendamento = new Agendamento();
+            agendamento.setDiaSemana(diaSemana);
+            agendamento.setTurno(turno);
+            agendamento.setVagas(vagas);
+            agendamento.setEstudanteMonitor(estudante);
+            agendamento.setDisciplina(estudante.getDisciplina());
+
+            agendamentoRepository.save(agendamento);
+
+            System.out.println("Agendamento disponibilizado com sucesso!");
+        } else {
+            System.out.println("Você não é um estudante monitor ou não está associado a uma disciplina.");
+        }
+    }
+
+    public void selecionarAgendamento(Scanner scanner, Estudante estudante) {
+        List<Agendamento> agendamentosDisponiveis = agendamentoRepository.findByDisciplina(estudante.getDisciplina());
+
+        if (!agendamentosDisponiveis.isEmpty()) {
+            System.out.println("Agendamentos Disponíveis:");
+            for (Agendamento agendamento : agendamentosDisponiveis) {
+                System.out.println(agendamento.getId() + ". Dia: " + agendamento.getDiaSemana() +
+                        ", Turno: " + agendamento.getTurno() + ", Vagas: " + agendamento.getVagas());
+            }
+
+            System.out.print("Digite o ID do agendamento que deseja selecionar: ");
+            long agendamentoId = scanner.nextLong();
+            scanner.nextLine();
+
+            Agendamento agendamentoSelecionado = agendamentoRepository.findById(agendamentoId)
+                    .orElseThrow(() -> new RuntimeException("Agendamento não encontrado com o ID: " + agendamentoId));
+
+            // Lógica para associar o agendamento ao usuário não monitor
+            estudante.getAgendaNormal().add(agendamentoSelecionado);
+            estudanteRepository.save(estudante);
+
+            System.out.println("Agendamento selecionado com sucesso!");
+        } else {
+            System.out.println("Não há agendamentos disponíveis para a disciplina associada.");
         }
     }
     

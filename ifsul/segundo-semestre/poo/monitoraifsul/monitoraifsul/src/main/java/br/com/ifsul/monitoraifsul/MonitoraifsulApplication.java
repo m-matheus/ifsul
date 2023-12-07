@@ -95,8 +95,9 @@ public class MonitoraifsulApplication implements CommandLineRunner {
                 	System.out.println("-------- Pagina do Estudante --------");
                 	System.out.println("1. Ver Disciplinas Disponíveis");
                     System.out.println("2. Associar a uma Disciplina (MONITORES)");
-                    System.out.println("3. Marcar Agendamento (ESTUDANTE)");
-                    System.out.println("4. Sair");
+                    System.out.println("3. Disponibilizar Agendamento (MONITORES)");
+                    System.out.println("4. Marcar Agendamento (ESTUDANTE)");                    
+                    System.out.println("5. Sair");
 
                     opcao = scanner.nextInt();
                     scanner.nextLine();
@@ -115,11 +116,18 @@ public class MonitoraifsulApplication implements CommandLineRunner {
                             }
                             break;
                         case 3:
-                            if (!estudanteLogado.isMonitor()) {
-                                // continuar aqui
+                            if (estudanteLogado.isMonitor()) {
+                                usuarioService.disponibilizarAgendamentos(scanner, estudanteLogado);
+                                break;
                             }
                             break;
-                        case 4: 
+                        case 4:
+                            if (!estudanteLogado.isMonitor()) {
+                                usuarioService.selecionarAgendamento(scanner, estudanteLogado);
+                                break;
+                            }
+                            break;
+                        case 5: 
                             usuarioLogado = null;
                             sair = true;
                             break;
