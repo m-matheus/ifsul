@@ -4,6 +4,7 @@ import java.util.List;
 
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
@@ -19,7 +20,7 @@ public class Estudante extends Usuario {
     @OneToMany(mappedBy = "estudanteMonitor")
     private List<Agendamento> agendaMonitor;
 
-    @OneToMany(mappedBy = "estudanteNormal")
+    @OneToMany(mappedBy = "estudanteNormal", fetch = FetchType.EAGER)
     private List<Agendamento> agendaNormal;
 
     @ManyToOne
