@@ -19,7 +19,7 @@ import br.com.ifsul.monitoraifsul.repository.UsuarioRepository;
 
 @Service
 public class UsuarioService {
-
+    // Injeta automáticamente a depência do repositório selecionado
     @Autowired
     private UsuarioRepository usuarioRepository;
 
@@ -38,45 +38,49 @@ public class UsuarioService {
 
     // Cadastra o usuario.
     public void cadastrarUsuario(Scanner scanner) {
+        // Solicita ao usuário as informações e lê as entradas
         System.out.println("-------- Cadastro de Usuário --------");
         System.out.print("Digite o nome: ");
         String nome = scanner.nextLine();
-
         System.out.print("Digite o email: ");
         String email = scanner.nextLine();
-
         System.out.print("Digite a senha: ");
         String senha = scanner.nextLine();
-
         System.out.print("Você é um professor? (true/false): ");
         boolean isProfessor = Boolean.parseBoolean(scanner.nextLine());
 
+        // Cria uma instância de Usuário
         Usuario usuario;
 
+        // Verifica se o usuário é professor
         if (isProfessor) {
+            // Solicita ao usuário as informações especificas de professor e lê as entradas
             System.out.print("Digite a formação: ");
             String formacao = scanner.nextLine();
 
+            // Cria uma instância de Professor e atribui os dados fornecidos
             Professor professor = new Professor();
             professor.setNome(nome);
             professor.setEmail(email);
             professor.setSenha(senha);
             professor.setFormacao(formacao);
 
+            // Salva o professor no repositório de professores e atribui à variável usuario
             usuario = professorRepository.save(professor);
         } else {
+            // Se não for um professor, é um estudante
+
+            // Solicita ao usuário as informações especificas de estudante e lê as entradas
             System.out.print("Digite a matrícula: ");
             String matricula = scanner.nextLine();
-
             System.out.print("Digite o curso: ");
             String curso = scanner.nextLine();
-
             System.out.print("Digite o semestre: ");
             int semestre = Integer.parseInt(scanner.nextLine());
-
             System.out.print("Você é um monitor? (true/false): ");
             boolean isMonitor = Boolean.parseBoolean(scanner.nextLine());
 
+            // Cria uma instância de Estudante e atribui os dados fornecidos
             Estudante estudante = new Estudante();
             estudante.setNome(nome);
             estudante.setEmail(email);
@@ -86,138 +90,159 @@ public class UsuarioService {
             estudante.setSemestre(semestre);
             estudante.setMonitor(isMonitor);
 
-            // if (isMonitor) {
-            //     System.out.print("Digite o ID da disciplina para monitoria: ");
-            //     long disciplinaId = Long.parseLong(scanner.nextLine());
-
-            //     Disciplina disciplina = disciplinaRepository.findById(disciplinaId)
-            //             .orElseThrow(() -> new RuntimeException("Disciplina não encontrada com o ID: " + disciplinaId));
-
-            //     estudante.setDisciplina(disciplina);
-            // }
-
+            // Salva o estudante no repositório de estudantes e atribui à variável usuario
             usuario = estudanteRepository.save(estudante);
         }
 
+        // Exibe uma mensagem indicando que o usuário foi cadastrado com sucesso
         System.out.println("Usuário cadastrado com sucesso!");
     }
     
 
     public Usuario fazerLogin(Scanner scanner) {
+        // Solicita ao usuário as informações de login para autenticação
         System.out.println("-------- Login --------");
         System.out.print("Digite o email: ");
         String email = scanner.nextLine();
-
         System.out.print("Digite a senha: ");
         String senha = scanner.nextLine();
 
+        // Busca um usuário no repositório com o email fornecido
         Usuario usuario = usuarioRepository.findByEmail(email);
 
+        // Verifica se o usuário foi encontrado e se a senha fornecida coincide com a senha salva no banco de dados
         if (usuario != null && usuario.getSenha().equals(senha)) {
+            // Retorna o usuário se as credenciais estiverem corretas
             return usuario;
         } else {
+            // Lança uma exceção se o usuário não for encontrado ou se a senha estiver incorreta
             throw new RuntimeException("Usuário não encontrado ou senha incorreta para o email: " + email);
         }
     }
 
     public void cadastrarDisciplina(Scanner scanner, Usuario usuario) {
+        // Verifica se o usuário é um Professor antes de permitir o cadastro da disciplina
         if (usuario instanceof Professor) {
+            // Solicita ao usuário que digite as informações da disciplina
             System.out.println("-------- Cadastro de Disciplina --------");
             System.out.print("Digite o nome da disciplina: ");
             String nomeDisciplina = scanner.nextLine();
 
+            // Cria uma nova instância de Disciplina e atribui os dados fornecidos
             Disciplina disciplina = new Disciplina();
             disciplina.setMateria(nomeDisciplina);
 
-            Disciplina savedDisciplina = disciplinaRepository.save(disciplina);
+            // Salva a disciplina no repositório
+            disciplinaRepository.save(disciplina);
 
+            // Converte o usuário para Professor, pois já foi verificado que é do tipo Professor
             Professor professor = (Professor) usuario;
-            // professor.getDisciplinas().add(savedDisciplina);
+            
+            // Salva as alterações no repositório de professores
             professorRepository.save(professor);
 
+            // Mensagem indicando que o cadastro da disciplina foi bem-sucedido
             System.out.println("Disciplina cadastrada com sucesso!");
         } else {
+            // Mensagem indicando que apenas professores podem cadastrar disciplinas
             System.out.println("Apenas professores podem cadastrar disciplinas.");
         }
     }
 
     public List<Estudante> listarEstudantesMonitores() {
+        // Utiliza o método findByMonitor do repositório de estudantes para retornar a lista de estudantes monitores
         return estudanteRepository.findByMonitor(true);
     }
 
     public List<Disciplina> listarDisciplinasDisponiveis() {
+        // Utiliza o método findAll do repositório de disciplinas para retornar a lista completa de disciplinas
         return disciplinaRepository.findAll();
     }
 
     public void associarDisciplina(Scanner scanner, Estudante estudante) {
+        // Verifica se o estudante é um monitor antes de permitir a associação com uma disciplina
         if (estudante.isMonitor()) {
+            // Solicita ao usuário que digite o ID da disciplina que deseja associar
             System.out.print("Digite o ID da disciplina que deseja associar: ");
             long disciplinaId = scanner.nextLong();
             scanner.nextLine();
     
+            // Busca a disciplina no repositório pelo ID fornecido, lançando uma exceção se não for encontrada
             Disciplina disciplinaAssociada = disciplinaRepository.findById(disciplinaId)
                     .orElseThrow(() -> new RuntimeException("Disciplina não encontrada com o ID: " + disciplinaId));
-    
+            
+            // Associa a disciplina ao estudante e salva as alterações no repositório de estudantes
             estudante.setDisciplina(disciplinaAssociada);
             estudanteRepository.save(estudante);
     
+            // Mensagem indicando que a associação foi bem-sucedida
             System.out.println("Associado à disciplina com sucesso!");
         } else {
+            // Mensagem indicando que apenas estudantes monitores podem associar-se a uma disciplina
             System.out.println("Você não é um estudante monitor. Não pode associar a uma disciplina.");
         }
     }
 
-     public void disponibilizarAgendamentos(Scanner scanner, Estudante estudante) {
+    public void disponibilizarAgendamentos(Scanner scanner, Estudante estudante) {
+        // Verifica se o estudante é um monitor e está associado a uma disciplina antes de permitir a disponibilização de agendamentos
         if (estudante.isMonitor() && estudante.getDisciplina() != null) {
+            // Solicita ao usuário que digite as informações do agendamento
             System.out.print("Digite o dia da semana do agendamento: ");
             String diaSemana = scanner.nextLine();
-
             System.out.print("Digite o turno do agendamento: ");
             String turno = scanner.nextLine();
-
             System.out.print("Digite o número de vagas disponíveis: ");
             int vagas = scanner.nextInt();
             scanner.nextLine();
 
+            // Cria uma nova instância de Agendamento e atribui os dados fornecidos
             Agendamento agendamento = new Agendamento();
             agendamento.setDiaSemana(diaSemana);
             agendamento.setTurno(turno);
             agendamento.setVagas(vagas);
-            // agendamento.setEstudanteMonitor(estudante);
-            // agendamento.setDisciplina(estudante.getDisciplina());
-
+            
+            // Salva o agendamento no repositório de agendamentos
             agendamentoRepository.save(agendamento);
 
+            // Mensagem indicando que o agendamento foi disponibilizado com sucesso
             System.out.println("Agendamento disponibilizado com sucesso!");
         } else {
+            // Mensagem indicando que apenas estudantes monitores associados a uma disciplina podem disponibilizar agendamentos
             System.out.println("Você não é um estudante monitor ou não está associado a uma disciplina.");
         }
     }
 
     public void selecionarAgendamento(Scanner scanner, Estudante estudante) {
+        // Obtém a lista de agendamentos disponíveis pela disciplina
         List<Agendamento> agendamentosDisponiveis = agendamentoRepository.findByDisciplina(estudante.getDisciplina());
         
-
+        // Verifica se há agendamentos disponíveis
         if (!agendamentosDisponiveis.isEmpty()) {
+            // Exibe os agendamentos disponíveis para que o estudante faça uma escolha
             System.out.println("Agendamentos Disponíveis:");
             for (Agendamento agendamento : agendamentosDisponiveis) {
                 System.out.println(agendamento.getId() + ". Dia: " + agendamento.getDiaSemana() +
                         ", Turno: " + agendamento.getTurno() + ", Vagas: " + agendamento.getVagas());
             }
 
+            // Solicita ao usuário que digite o ID do agendamento que deseja selecionar
             System.out.print("Digite o ID do agendamento que deseja selecionar: ");
             long agendamentoId = scanner.nextLong();
             scanner.nextLine();
 
+            // Busca o agendamento no repositório pelo ID fornecido, lançando uma exceção se não for encontrado
             Agendamento agendamentoSelecionado = agendamentoRepository.findById(agendamentoId)
                     .orElseThrow(() -> new RuntimeException("Agendamento não encontrado com o ID: " + agendamentoId));
 
-            // Lógica para associar o agendamento ao usuário não monitor
+            
+            // Adiciona o agendamento selecionado à agenda normal do estudante e salva as alterações no repositório de estudantes
             estudante.getAgendaNormal().add(agendamentoSelecionado);
             estudanteRepository.save(estudante);
 
+            // Mensagem indicando que o agendamento foi selecionado com sucesso
             System.out.println("Agendamento selecionado com sucesso!");
         } else {
+            // Mensagem indicando que não há agendamentos disponíveis para a disciplina associada
             System.out.println("Não há agendamentos disponíveis para a disciplina associada.");
         }
     }
