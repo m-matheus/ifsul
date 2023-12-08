@@ -17,7 +17,8 @@ import br.com.ifsul.monitoraifsul.service.UsuarioService;
 
 @SpringBootApplication
 public class MonitoraifsulApplication implements CommandLineRunner {
-
+    
+    // Injeta automáticamente uma instância de UsuarioService
     @Autowired
     private UsuarioService usuarioService;
 
@@ -32,25 +33,31 @@ public class MonitoraifsulApplication implements CommandLineRunner {
         Usuario usuarioLogado = null;
 
         while (!sair) {
+            // Exibe o menu principal para o usuário
             System.out.println("-------- Menu Principal --------");
             System.out.println("1. Cadastrar Usuário");
             System.out.println("2. Logar");
             System.out.println("3. Sair");
 
+            // Solicita ao usuário que escolha uma opção do menu
             int opcao = scanner.nextInt();
             scanner.nextLine();
 
+            // Realiza a ação correspondente à opção escolhida pelo usuário
             switch (opcao) {
                 case 1:
+                    // Chama o serviço para cadastrar um novo usuário
                     usuarioService.cadastrarUsuario(scanner);
                     break;
                 case 2:
+                    // Chama o serviço para realizar o login do usuário
                     usuarioLogado = usuarioService.fazerLogin(scanner);
                     if (usuarioLogado != null) {
                         System.out.println("Login bem-sucedido!");
                     }
                     break;
                 case 3:
+                    // Efetua o logout e encerra o loop de interação com o usuário
                     usuarioLogado = null;
                     sair = true;
                     break;
@@ -59,11 +66,12 @@ public class MonitoraifsulApplication implements CommandLineRunner {
                     break;
             }
 
+            // Executa ações adicionais se um usuário estiver logado
             if (usuarioLogado != null) {
                 System.out.println("Bem-vindo, " + usuarioLogado.getNome() + "!");
                 System.out.println("");
 
-                // Funções do usuário professor
+                // Funções específicas para usuários do tipo Professor
                 if (usuarioLogado instanceof Professor) {
                   opcao = 0;
                   
@@ -71,14 +79,17 @@ public class MonitoraifsulApplication implements CommandLineRunner {
                   System.out.println("1. Cadastrar Disciplina");               
                   System.out.println("2. Sair");
                   
+                  // Solicita ao professor que escolha uma opção
                   opcao = scanner.nextInt();
                   scanner.nextLine();
                   
                   switch (opcao) {
                 	case 1:
+                        // Chama o serviço para cadastrar uma nova disciplina pelo professor
                 		usuarioService.cadastrarDisciplina(scanner, usuarioLogado);
                 		break;
                 	case 2:
+                        // Efetua o logout e encerra o loop de interação com o professor
                 		usuarioLogado = null;
                 		sair = true;                	
                 		break;
@@ -88,6 +99,7 @@ public class MonitoraifsulApplication implements CommandLineRunner {
                   }
                 }
                 
+                // Funções específicas para usuários do tipo Estudante
                 if (usuarioLogado instanceof Estudante) {
                 	opcao = 0;
                     Estudante estudanteLogado = (Estudante) usuarioLogado;
@@ -99,11 +111,13 @@ public class MonitoraifsulApplication implements CommandLineRunner {
                     System.out.println("4. Marcar Agendamento (ESTUDANTE)");                    
                     System.out.println("5. Sair");
 
+                    // Solicita ao estudante que escolha uma opção
                     opcao = scanner.nextInt();
                     scanner.nextLine();
 
                     switch (opcao) {
                         case 1:
+                            // Lista as disciplinas disponíveis para o estudante
                             List<Disciplina> disciplinasDisponiveis = usuarioService.listarDisciplinasDisponiveis();
                             System.out.println("Disciplinas Disponíveis:");
                             for (Disciplina disciplina : disciplinasDisponiveis) {
@@ -111,23 +125,27 @@ public class MonitoraifsulApplication implements CommandLineRunner {
                             }
                             break;
                         case 2:
+                            // Permite ao estudante associar-se a uma disciplina se for monitor
                             if (estudanteLogado.isMonitor()) {
                                 usuarioService.associarDisciplina(scanner, estudanteLogado);
                             }
                             break;
                         case 3:
+                            // Permite ao estudante monitor disponibilizar agendamentos
                             if (estudanteLogado.isMonitor()) {
                                 usuarioService.disponibilizarAgendamentos(scanner, estudanteLogado);
                                 break;
                             }
                             break;
                         case 4:
+                            // Permite ao estudante não monitor selecionar um agendamento disponível
                             if (!estudanteLogado.isMonitor()) {
                                 usuarioService.selecionarAgendamento(scanner, estudanteLogado);
                                 break;
                             }
                             break;
-                        case 5: 
+                        case 5:
+                            // Efetua o logout e encerra o loop de interação com o estudante
                             usuarioLogado = null;
                             sair = true;
                             break;
@@ -139,11 +157,12 @@ public class MonitoraifsulApplication implements CommandLineRunner {
                     
                 }
             } else {
+                // Mensagem exibida se nenhum usuário estiver logado
                 System.out.println("Nenhum usuário logado.");
             }
         }
 
-        
+        // Mensagem de encerramento após sair do loop principal
         System.out.println("Obrigado por usar o sistema!");
         scanner.close();
     }
