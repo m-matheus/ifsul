@@ -21,7 +21,7 @@ public class Usuario implements Serializable{
     // @Id: marca a variável como chave primária.
     // @GeneratedValue: gera valores automático para a variável.
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     protected long id;
     protected String nome;
     @Column(unique = true)

@@ -13,7 +13,7 @@ import jakarta.persistence.OneToMany;
 @Entity
 public class Disciplina {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private long id;
     private String materia;
     

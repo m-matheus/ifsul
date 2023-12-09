@@ -10,7 +10,7 @@ import jakarta.persistence.ManyToOne;
 @Entity
 public class Agendamento {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private long id;
     private String diaSemana;
     private String turno;

@@ -1,9 +1,6 @@
 package br.com.ifsul.monitoraifsul.entity;
 
-import java.util.ArrayList;
 import java.util.List;
-
-import org.hibernate.annotations.CascadeType;
 
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
