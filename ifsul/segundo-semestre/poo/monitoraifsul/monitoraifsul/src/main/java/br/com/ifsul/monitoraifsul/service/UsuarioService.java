@@ -68,7 +68,7 @@ public class UsuarioService {
             // Salva o professor no repositório de professores e atribui à variável usuario
             usuario = professorRepository.save(professor);
             System.out.println("===========================================");
-            System.out.println(" ");
+            System.out.println("");
         } else {
             // Se não for um professor, é um estudante
 
@@ -97,8 +97,9 @@ public class UsuarioService {
         }
 
         // Exibe uma mensagem indicando que o usuário foi cadastrado com sucesso
+        System.out.println("");
         System.out.println("Usuário cadastrado com sucesso!");
-        System.out.println(" ");
+        System.out.println("");
     }
 
     public Usuario fazerLogin(Scanner scanner) {

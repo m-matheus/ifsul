@@ -15,7 +15,7 @@ import jakarta.persistence.DiscriminatorType;
 // @Entity: marca que a classe é uma entidade persistente, mostra ao JPA (framework) que a classe deve ser tratada como uma tabela no bd.
 @Entity
 // Faz com que cada herança tenha a sua própria tabela.
-@Inheritance(strategy = InheritanceType.JOINED)
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "dtype", discriminatorType = DiscriminatorType.STRING)
 public class Usuario implements Serializable{
     // @Id: marca a variável como chave primária.
