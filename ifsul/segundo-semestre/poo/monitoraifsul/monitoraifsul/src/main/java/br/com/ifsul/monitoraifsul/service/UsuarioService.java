@@ -331,83 +331,45 @@ public class UsuarioService {
     } 
 
     public void editarUsuario(Scanner scanner) {
+        System.out.println("-------- Edição de Usuário --------");
+
         // Lista os usuários disponíveis
         List<Usuario> usuarios = listarUsuarios();
 
-        System.out.println("-------- Edição de Usuário --------");
-        
+        if (usuarios.isEmpty()) {
+            System.out.println("Não há usuários para editar.");
+            return;
+        }
 
-        // Solicita ao usuário que digite o ID do usuário a ser editado
+        // Solicita ao usuário que escolha um ID para editar
         System.out.print("Digite o ID do usuário que deseja editar: ");
         long usuarioId = Long.parseLong(scanner.nextLine());
-    
-        // Busca o usuário no banco de dados pelo ID
-        Usuario usuario = usuarioRepository.findById(usuarioId)
-                .orElseThrow(() -> new RuntimeException("Usuário não encontrado com o ID: " + usuarioId));
-    
-        // Exibe as informações atuais do usuário
-        System.out.println("Informações atuais do usuário:");
-        System.out.println("ID: " + usuario.getId());
-        System.out.println("Nome: " + usuario.getNome());
-        System.out.println("Email: " + usuario.getEmail());
-        
-    
-        // Solicita ao usuário que digite as novas informações
-        System.out.print("Digite o novo nome: ");
-        String novoNome = scanner.nextLine();
-        System.out.print("Digite o novo email: ");
-        String novoEmail = scanner.nextLine();
-        System.out.print("Digite a nova senha: ");
-        String novoSenha = scanner.nextLine();
-        System.out.println("É professor? (true/false): ");
-        boolean isProfessor = Boolean.parseBoolean(scanner.nextLine());
-        // Salva as alterações no banco de dados
-        // Atualiza as informações do usuário com os novos valores
-        usuario.setNome(novoNome);
-        usuario.setEmail(novoEmail);
-        usuario.setSenha(novoSenha);
-        
-        if (isProfessor) {
-            // Solicita ao usuário as informações especificas de professor e lê as entradas
-            System.out.print("Digite a formação: ");
-            String formacao = scanner.nextLine();
 
-            // Cria uma instância de Professor e atribui os dados fornecidos
-            Professor professor = new Professor();
+        // Verifica se o ID fornecido está na lista de usuários
+        boolean usuarioEncontrado = usuarios.stream().anyMatch(usuario -> usuario.getId() == usuarioId);
 
-            professor.setFormacao(formacao);
+        if (usuarioEncontrado) {
+            // Busca o usuário no banco de dados pelo ID
+            Usuario usuario = usuarioRepository.findById(usuarioId)
+                    .orElseThrow(() -> new RuntimeException("Usuário não encontrado com o ID: " + usuarioId));
 
-            // Salva o professor no repositório de professores e atribui à variável usuario
-            usuario = professorRepository.save(professor);
-            System.out.println("===========================================");
-            System.out.println(" ");
+            // Solicita as alterações desejadas ao usuário
+            System.out.print("Digite o novo nome: ");
+            String novoNome = scanner.nextLine();
+            usuario.setNome(novoNome);
+
+            System.out.print("Digite o novo email: ");
+            String novoEmail = scanner.nextLine();
+            usuario.setEmail(novoEmail);
+
+            // ... outras alterações ...
+
+            // Salva as alterações no banco de dados
+            usuarioRepository.save(usuario);
+
+            System.out.println("Usuário editado com sucesso!");
         } else {
-            // Se não for um professor, é um estudante
-
-            // Solicita ao usuário as informações especificas de estudante e lê as entradas
-            System.out.print("Digite a matrícula: ");
-            String matricula = scanner.nextLine();
-            System.out.print("Digite o curso: ");
-            String curso = scanner.nextLine();
-            System.out.print("Digite o semestre: ");
-            int semestre = Integer.parseInt(scanner.nextLine());
-            System.out.print("Você é um monitor? (true/false): ");
-            boolean isMonitor = Boolean.parseBoolean(scanner.nextLine());
-
-            // Cria uma instância de Estudante e atribui os dados fornecidos
-            Estudante estudante = new Estudante();            
-            
-            estudante.setMatricula(matricula);
-            estudante.setCurso(curso);
-            estudante.setSemestre(semestre);
-            estudante.setMonitor(isMonitor);
-
-            // Salva o estudante no repositório de estudantes e atribui à variável usuario
-            usuario = estudanteRepository.save(estudante);
+            System.out.println("ID de usuário inválido. Nenhum usuário foi editado.");
         }
-        
-        usuarioRepository.save(usuario);
-    
-        System.out.println("Usuário editado com sucesso!");
     }
 }
