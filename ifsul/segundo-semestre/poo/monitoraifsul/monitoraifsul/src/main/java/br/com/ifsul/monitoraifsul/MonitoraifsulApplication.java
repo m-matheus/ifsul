@@ -61,6 +61,12 @@ public class MonitoraifsulApplication implements CommandLineRunner {
                         usuarioLogado = usuarioService.fazerLogin(scanner);
                         if (usuarioLogado != null) {
                             System.out.println("Login bem-sucedido!");
+                        }else{
+                            System.out.println("===========================================");
+                            System.out.println("");
+                            System.out.println("ERRO! E-mail e/ou senha incorretos.");  
+                            System.out.println("");
+                            System.out.println("===========================================");                                     
                         }
                         break;
                     case 3:
@@ -147,6 +153,13 @@ public class MonitoraifsulApplication implements CommandLineRunner {
                                 case 2:
                                     // Permite ao estudante associar-se a uma disciplina se for monitor
                                     if (estudanteLogado.isMonitor()) {
+                                    List<Disciplina> disciplinasDisponiveis2 = usuarioService.listarDisciplinasDisponiveis();
+                                    System.out.println("===========================================");
+                                    System.out.println("Disciplinas Disponíveis:");
+                                    for (Disciplina disciplina : disciplinasDisponiveis2) {
+                                        System.out.println("[" + disciplina.getId() + "] " + disciplina.getMateria());
+                                    }
+                                                                
                                         usuarioService.associarDisciplina(scanner, estudanteLogado);
                                         break;
                                     }else{
@@ -189,7 +202,11 @@ public class MonitoraifsulApplication implements CommandLineRunner {
                                     voltar = true;
                                     break;
                                 default:
+                                    System.out.println("===========================================");    
+                                    System.out.println("");
                                     System.out.println("Opção inválida. Tente novamente.");
+                                    System.out.println("");
+                                    System.out.println("===========================================");
                                     break;
                             }
                         }

@@ -67,8 +67,6 @@ public class UsuarioService {
 
             // Salva o professor no repositório de professores e atribui à variável usuario
             usuario = professorRepository.save(professor);
-            System.out.println("===========================================");
-            System.out.println("");
         } else {
             // Se não for um professor, é um estudante
 
@@ -97,6 +95,7 @@ public class UsuarioService {
         }
 
         // Exibe uma mensagem indicando que o usuário foi cadastrado com sucesso
+        System.out.println("===========================================");
         System.out.println("");
         System.out.println("Usuário cadastrado com sucesso!");
         System.out.println("");
@@ -174,24 +173,27 @@ public class UsuarioService {
     }
 
     public List<Usuario> listarUsuarios() {
-        System.out.println("-------- Lista de Usuários --------");
+        System.out.println("===========================================");
+        System.out.println("------------ Lista de Usuários ------------");
+        System.out.println("");
     
         // Recupera a lista de todos os usuários do banco de dados
         List<Usuario> usuarios = usuarioRepository.findAll();
     
         // Exibe as informações de cada usuário
         for (Usuario usuario : usuarios) {
-            System.out.println("ID: " + usuario.getId() + ", Nome: " + usuario.getNome() + ", Email: " + usuario.getEmail());
+            System.out.println("ID: [" + usuario.getId() + "] Nome: [" + usuario.getNome() + "] Email: [" + usuario.getEmail() + "]");
         }
     
         return usuarios;
     }
+    
     public void associarDisciplina(Scanner scanner, Estudante estudante) {
         // Verifica se o estudante é um monitor antes de permitir a associação com uma
         // disciplina
         if (estudante.isMonitor() == true) {
             // Solicita ao usuário que digite o ID da disciplina que deseja associar
-            System.out.println("===========================================");
+            System.out.println("");
             System.out.print("Digite o ID da disciplina que deseja associar: ");
             System.out.println("");
             long disciplinaId = scanner.nextLong();
@@ -200,7 +202,7 @@ public class UsuarioService {
             // Busca a disciplina no repositório pelo ID fornecido, lançando uma exceção se
             // não for encontrada
             Disciplina disciplinaAssociada = disciplinaRepository.findById(disciplinaId)
-                    .orElseThrow(() -> new RuntimeException("Disciplina não encontrada com o ID: " + disciplinaId));
+                    .orElseThrow(() -> new RuntimeException("Disciplina não encontrada com o ID: [" + disciplinaId + "]"));
 
             // Associa a disciplina ao estudante e salva as alterações no repositório de
             // estudantes
@@ -299,7 +301,11 @@ public class UsuarioService {
         } else {
             // Mensagem indicando que não há agendamentos disponíveis para a disciplina
             // associada
+            System.out.println("===========================================");
+            System.out.println("");
             System.out.println("Não há agendamentos disponíveis para a disciplina associada.");
+            System.out.println("");
+            System.out.println("===========================================");
         }
     }
 
@@ -313,6 +319,7 @@ public class UsuarioService {
         }
     
         // Solicita ao usuário que escolha um ID para excluir
+        System.out.println("");
         System.out.print("Digite o ID do usuário que deseja excluir: ");
         long usuarioId = Long.parseLong(scanner.nextLine());
     
@@ -325,15 +332,15 @@ public class UsuarioService {
                     .orElseThrow(() -> new RuntimeException("Usuário não encontrado com o ID: " + usuarioId));
     
             usuarioRepository.delete(usuario);
+            System.out.println("");
             System.out.println("Usuário excluído com sucesso!");
         } else {
+            System.out.println("");
             System.out.println("ID de usuário inválido. Nenhum usuário foi excluído.");
         }
     } 
 
     public void editarUsuario(Scanner scanner) {
-        System.out.println("-------- Edição de Usuário --------");
-
         // Lista os usuários disponíveis
         List<Usuario> usuarios = listarUsuarios();
 
