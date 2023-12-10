@@ -7,9 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.ifsul.monitoraifsul.entity.Agendamento;
-import br.com.ifsul.monitoraifsul.entity.Disciplina;
 import br.com.ifsul.monitoraifsul.entity.Estudante;
-import br.com.ifsul.monitoraifsul.entity.Usuario;
 import br.com.ifsul.monitoraifsul.repository.AgendamentoRepository;
 import br.com.ifsul.monitoraifsul.repository.EstudanteRepository;
 
@@ -168,6 +166,49 @@ public class AgendamentoService {
         } else {
             System.out.println("");
             System.out.println("ID de agendamento inválido. Nenhum agendamento foi excluído.");
+        }
+    }
+
+    public void editarAgendamento(Scanner scanner) {
+        // Lista os agendamentos disponíveis
+        List<Agendamento> agendamentos = listarAgendamentos();
+    
+        if (agendamentos.isEmpty()) {
+            System.out.println("Não há agendamentos para editar.");
+            return;
+        }
+    
+        // Solicita ao usuário que escolha um ID para editar
+        System.out.print("Digite o ID do agendamento que deseja editar: ");
+        long agendamentoId = Long.parseLong(scanner.nextLine());
+    
+        // Verifica se o ID fornecido está na lista de agendamentos
+        boolean agendamentoEncontrado = agendamentos.stream().anyMatch(agendamento -> agendamento.getId() == agendamentoId);
+    
+        if (agendamentoEncontrado) {
+            // Busca o agendamento no banco de dados pelo ID
+            Agendamento agendamento = agendamentoRepository.findById(agendamentoId)
+                    .orElseThrow(() -> new RuntimeException("Agendamento não encontrado com o ID: " + agendamentoId));
+    
+            // Solicita as alterações desejadas ao usuário
+            System.out.print("Digite o novo dia da semana do agendamento: ");
+            String novoDiaSemana = scanner.nextLine();
+            agendamento.setDiaSemana(novoDiaSemana);
+    
+            System.out.print("Digite o novo turno do agendamento: ");
+            String novoTurno = scanner.nextLine();
+            agendamento.setTurno(novoTurno);
+    
+            System.out.print("Digite o novo número de vagas do agendamento: ");
+            int novaVaga = scanner.nextInt();
+            agendamento.setVagas(novaVaga);
+    
+            // Salva as alterações no banco de dados
+            agendamentoRepository.save(agendamento);
+    
+            System.out.println("Agendamento editado com sucesso!");
+        } else {
+            System.out.println("ID de agendamento inválido. Nenhum agendamento foi editado.");
         }
     }
 }

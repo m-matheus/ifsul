@@ -106,8 +106,9 @@ public class MonitoraifsulApplication implements CommandLineRunner {
                             opcao = 0;
                             System.out.println("----------- Pagina do professor -----------");
                             System.out.println("[1] Cadastrar Disciplina");               
-                            System.out.println("[2] Excluir Disciplina");               
-                            System.out.println("[3] Logout");
+                            System.out.println("[2] Excluir Disciplina");
+                            System.out.println("[3] Editar Disciplina");
+                            System.out.println("[4] Logout");
                             
                             // Solicita ao professor que escolha uma opção
                             opcao = scanner.nextInt();
@@ -121,6 +122,9 @@ public class MonitoraifsulApplication implements CommandLineRunner {
                                 case 2:
                                     disciplinaService.excluirDisciplina(scanner);
                                 case 3:
+                                    disciplinaService.editarDisciplina(scanner);
+                                    break;
+                                case 4:
                                     // Efetua o logout e encerra o loop de interação com o professor
                                     usuarioLogado = null;
                                     voltar = true;                	
@@ -140,11 +144,12 @@ public class MonitoraifsulApplication implements CommandLineRunner {
                         while (!voltar){   
                             System.out.println("----------- Pagina do Estudante -----------");
                             System.out.println("[1] Ver Disciplinas Disponíveis");
-                            System.out.println("[2] Associar a uma Disciplina (MONITORES)");
-                            System.out.println("[3] Disponibilizar Agendamento (MONITORES)");
+                            System.out.println("[2] Associar a uma Disciplina (MONITOR)");
+                            System.out.println("[3] Disponibilizar Agendamento (MONITOR)");
+                            System.out.println("[4] Editar Agendamento (MONITOR)");
                             System.out.println("[4] Marcar Agendamento (ESTUDANTE)");                    
-                            System.out.println("[5] Excluir Agendamento (ESTUDANTE)");                    
-                            System.out.println("[6] Logout");
+                            System.out.println("[6] Excluir Agendamento (ESTUDANTE)");
+                            System.out.println("[7] Logout");
                             System.out.println("===========================================");
                         
                             // Solicita ao estudante que escolha uma opção
@@ -196,9 +201,8 @@ public class MonitoraifsulApplication implements CommandLineRunner {
                                     }
                                     break;
                                 case 4:
-                                    // Permite ao estudante não monitor selecionar um agendamento disponível
-                                    if (!estudanteLogado.isMonitor()) {
-                                        agendamentoService.selecionarAgendamento(scanner, estudanteLogado);
+                                    if (estudanteLogado.isMonitor()) {
+                                        agendamentoService.editarAgendamento(scanner);
                                         break;
                                     }else{
                                        System.out.println("===========================================");
@@ -207,7 +211,7 @@ public class MonitoraifsulApplication implements CommandLineRunner {
                                        System.out.println("");
                                        System.out.println("===========================================");
                                     }
-                                    break;
+                                    break;    
                                 case 5:
                                     if (!estudanteLogado.isMonitor()) {
                                         agendamentoService.excluirAgendamento(scanner);
@@ -221,6 +225,19 @@ public class MonitoraifsulApplication implements CommandLineRunner {
                                     }
                                     break;
                                 case 6:
+                                    // Permite ao estudante não monitor selecionar um agendamento disponível
+                                    if (!estudanteLogado.isMonitor()) {
+                                        agendamentoService.selecionarAgendamento(scanner, estudanteLogado);
+                                        break;
+                                    }else{
+                                       System.out.println("===========================================");
+                                       System.out.println("");
+                                       System.out.println("ERRO! Você não possui autorização para selecionar essa opção.");
+                                       System.out.println("");
+                                       System.out.println("===========================================");
+                                    }
+                                    break;
+                                case 7:
                                     // Efetua o logout e encerra o loop de interação com o estudante
                                     usuarioLogado = null;
                                     voltar = true;

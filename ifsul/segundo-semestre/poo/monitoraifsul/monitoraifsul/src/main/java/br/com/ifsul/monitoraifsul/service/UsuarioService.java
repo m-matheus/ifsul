@@ -244,8 +244,6 @@ public class UsuarioService {
             String novoEmail = scanner.nextLine();
             usuario.setEmail(novoEmail);
 
-            // ... outras alterações ...
-
             // Salva as alterações no banco de dados
             usuarioRepository.save(usuario);
 

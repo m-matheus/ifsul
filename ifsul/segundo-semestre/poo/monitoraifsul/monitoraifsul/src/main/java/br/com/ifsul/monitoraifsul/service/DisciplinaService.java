@@ -55,6 +55,7 @@ public class DisciplinaService {
             System.out.println("===========================================");
         }
     }
+    
     public List<Disciplina> listarDisciplinas() {
         // Utiliza o método findAll do repositório de disciplinas para retornar a lista completa de disciplinas
         System.out.println("===========================================");
@@ -99,7 +100,7 @@ public class DisciplinaService {
                 estudante.setDisciplina(null);
                 estudanteRepository.save(estudante);
             }
-            
+
             disciplinaRepository.delete(disciplina);
             System.out.println("");
             System.out.println("Disciplina excluída com sucesso!");
@@ -107,6 +108,42 @@ public class DisciplinaService {
         } else {
             System.out.println("");
             System.out.println("ID de disciplina inválido. Nenhuma disciplina foi excluída.");
+        }
+    }
+
+    public void editarDisciplina(Scanner scanner) {
+        // Lista as disciplinas disponíveis
+        List<Disciplina> disciplinas = listarDisciplinas();
+    
+        if (disciplinas.isEmpty()) {
+            System.out.println("Não há disciplinas para editar.");
+            return;
+        }
+    
+        // Solicita ao usuário que escolha um ID para editar
+        System.out.print("Digite o ID da disciplina que deseja editar: ");
+        long disciplinaId = Long.parseLong(scanner.nextLine());
+    
+        // Verifica se o ID fornecido está na lista de disciplinas
+        boolean disciplinaEncontrada = disciplinas.stream().anyMatch(disciplina -> disciplina.getId() == disciplinaId);
+    
+        if (disciplinaEncontrada) {
+            // Busca a disciplina no banco de dados pelo ID
+            Disciplina disciplina = disciplinaRepository.findById(disciplinaId)
+                    .orElseThrow(() -> new RuntimeException("Disciplina não encontrada com o ID: " + disciplinaId));
+    
+            // Solicita as alterações desejadas ao usuário
+            System.out.print("Digite o novo nome da disciplina: ");
+            String novoNome = scanner.nextLine();
+            disciplina.setMateria(novoNome);    
+
+    
+            // Salva as alterações no banco de dados
+            disciplinaRepository.save(disciplina);
+    
+            System.out.println("Disciplina editada com sucesso!");
+        } else {
+            System.out.println("ID de disciplina inválido. Nenhuma disciplina foi editada.");
         }
     }
 }
