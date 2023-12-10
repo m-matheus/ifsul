@@ -16,5 +16,6 @@
 
 
 ### Next Step
-
+- As vagas tem que aumentar novamente apos um estudante excluir o agendamento
+- Disassociar estudante de agendamento
 - Colocar os relacionamentos e anotação herança.

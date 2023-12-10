@@ -59,15 +59,23 @@ public class DisciplinaService {
     public List<Disciplina> listarDisciplinas() {
         // Utiliza o método findAll do repositório de disciplinas para retornar a lista completa de disciplinas
         System.out.println("===========================================");
-        System.out.println("------------ Lista de Disciplinas ------------");
+        System.out.println("----------- Lista de Disciplinas ----------");
         System.out.println("");
-    
+        
         List<Disciplina> disciplinas = disciplinaRepository.findAll();
         
+        if (disciplinas.isEmpty()) {
+            System.out.println("Não há disciplinas cadastradas ainda.");
+            System.out.println();
+            System.out.println("===========================================");
+        }
+
         for (Disciplina disciplina : disciplinas) {
             System.out.println("ID: [" + disciplina.getId() + "] Materia: [" + disciplina.getMateria() + "]");
         }
-    
+        System.out.println();
+        System.out.println("===========================================");
+        
         return disciplinas;
     }
     
@@ -77,7 +85,11 @@ public class DisciplinaService {
         List<Disciplina> disciplinas = listarDisciplinas();
     
         if (disciplinas.isEmpty()) {
+            System.out.println("===========================================");
+            System.out.println();
             System.out.println("Não há disciplinas para excluir.");
+            System.out.println();
+            System.out.println("===========================================");
             return;
         }
     
@@ -105,9 +117,12 @@ public class DisciplinaService {
             System.out.println("");
             System.out.println("Disciplina excluída com sucesso!");
             System.out.println("");
+            System.out.println("===========================================");
         } else {
             System.out.println("");
             System.out.println("ID de disciplina inválido. Nenhuma disciplina foi excluída.");
+            System.out.println();
+            System.out.println("===========================================");
         }
     }
 
@@ -117,10 +132,13 @@ public class DisciplinaService {
     
         if (disciplinas.isEmpty()) {
             System.out.println("Não há disciplinas para editar.");
+            System.out.println();
+            System.out.println("===========================================");
             return;
         }
     
         // Solicita ao usuário que escolha um ID para editar
+        System.out.println();
         System.out.print("Digite o ID da disciplina que deseja editar: ");
         long disciplinaId = Long.parseLong(scanner.nextLine());
     
@@ -140,10 +158,18 @@ public class DisciplinaService {
     
             // Salva as alterações no banco de dados
             disciplinaRepository.save(disciplina);
-    
+            
+            System.out.println("===========================================");
+            System.out.println();
             System.out.println("Disciplina editada com sucesso!");
+            System.out.println();
+            System.out.println("===========================================");
         } else {
+            System.out.println("===========================================");
+            System.out.println();
             System.out.println("ID de disciplina inválido. Nenhuma disciplina foi editada.");
+            System.out.println();
+            System.out.println("===========================================");
         }
     }
 }

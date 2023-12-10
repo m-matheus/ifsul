@@ -109,6 +109,7 @@ public class MonitoraifsulApplication implements CommandLineRunner {
                             System.out.println("[2] Excluir Disciplina");
                             System.out.println("[3] Editar Disciplina");
                             System.out.println("[4] Logout");
+                            System.out.println("===========================================");
                             
                             // Solicita ao professor que escolha uma opção
                             opcao = scanner.nextInt();
@@ -121,6 +122,7 @@ public class MonitoraifsulApplication implements CommandLineRunner {
                                     break;
                                 case 2:
                                     disciplinaService.excluirDisciplina(scanner);
+                                    break;
                                 case 3:
                                     disciplinaService.editarDisciplina(scanner);
                                     break;
@@ -147,8 +149,8 @@ public class MonitoraifsulApplication implements CommandLineRunner {
                             System.out.println("[2] Associar a uma Disciplina (MONITOR)");
                             System.out.println("[3] Disponibilizar Agendamento (MONITOR)");
                             System.out.println("[4] Editar Agendamento (MONITOR)");
-                            System.out.println("[4] Marcar Agendamento (ESTUDANTE)");                    
-                            System.out.println("[6] Excluir Agendamento (ESTUDANTE)");
+                            System.out.println("[5] Excluir Agendamento (MONITOR)");
+                            System.out.println("[6] Marcar Agendamento (ESTUDANTE)");                    
                             System.out.println("[7] Logout");
                             System.out.println("===========================================");
                         
@@ -158,25 +160,12 @@ public class MonitoraifsulApplication implements CommandLineRunner {
 
                             switch (opcao) {
                                 case 1:
-                                    // Lista as disciplinas disponíveis para o estudante
-                                    List<Disciplina> disciplinasDisponiveis = usuarioService.listarDisciplinasDisponiveis();
-                                    System.out.println("===========================================");
-                                    System.out.println("Disciplinas Disponíveis:");
-                                    for (Disciplina disciplina : disciplinasDisponiveis) {
-                                        System.out.println("[" + disciplina.getId() + "] " + disciplina.getMateria());
-                                    }
-                                    System.out.println("===========================================");
+                                    disciplinaService.listarDisciplinas();                   
                                     break;
                                 case 2:
                                     // Permite ao estudante associar-se a uma disciplina se for monitor
                                     if (estudanteLogado.isMonitor()) {
-                                    List<Disciplina> disciplinasDisponiveis2 = usuarioService.listarDisciplinasDisponiveis();
-                                    System.out.println("===========================================");
-                                    System.out.println("Disciplinas Disponíveis:");
-                                    for (Disciplina disciplina : disciplinasDisponiveis2) {
-                                        System.out.println("[" + disciplina.getId() + "] " + disciplina.getMateria());
-                                    }
-                                                                
+                                        disciplinaService.listarDisciplinas();                   
                                         disciplinaService.associarDisciplina(scanner, estudanteLogado);
                                         break;
                                     }else{
@@ -209,19 +198,19 @@ public class MonitoraifsulApplication implements CommandLineRunner {
                                        System.out.println("");
                                        System.out.println("ERRO! Você não possui autorização para selecionar essa opção.");
                                        System.out.println("");
-                                       System.out.println("===========================================");
+                                       System.out.println("===========================================");                                       
                                     }
                                     break;    
                                 case 5:
-                                    if (!estudanteLogado.isMonitor()) {
+                                    if (estudanteLogado.isMonitor()) {
                                         agendamentoService.excluirAgendamento(scanner);
                                         break;
                                     }else{
-                                       System.out.println("===========================================");
-                                       System.out.println("");
-                                       System.out.println("ERRO! Você não possui autorização para selecionar essa opção.");
-                                       System.out.println("");
-                                       System.out.println("===========================================");
+                                        System.out.println("===========================================");
+                                        System.out.println("");
+                                        System.out.println("ERRO! Você não possui autorização para selecionar essa opção.");
+                                        System.out.println("");
+                                        System.out.println("===========================================");
                                     }
                                     break;
                                 case 6:
@@ -254,10 +243,6 @@ public class MonitoraifsulApplication implements CommandLineRunner {
                         
                     }
                 } 
-                //else {
-                //     // Mensagem exibida se nenhum usuário estiver logado
-                //     System.out.println("Nenhum usuário logado.");
-                // }
                 break;
             }
         }

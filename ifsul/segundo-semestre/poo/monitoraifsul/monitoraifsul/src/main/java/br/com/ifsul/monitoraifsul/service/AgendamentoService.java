@@ -44,7 +44,6 @@ public class AgendamentoService {
             agendamentoRepository.save(agendamento);
 
             // Mensagem indicando que o agendamento foi disponibilizado com sucesso
-            System.out.println("");
             System.out.println("===========================================");
             System.out.println("");
             System.out.println("Agendamento disponibilizado com sucesso!");
@@ -124,13 +123,13 @@ public class AgendamentoService {
         // Utiliza o método findAll do repositório de agendamentos para retornar a lista
         // completa de agendamentos
         System.out.println("===========================================");
-        System.out.println("------------ Lista de Agendamentos ------------");
+        System.out.println("---------- Lista de Agendamentos ----------");
         System.out.println("");
 
         List<Agendamento> agendamentos = agendamentoRepository.findAll();
         
         for (Agendamento agendamento : agendamentos) {
-            System.out.println("ID: [" + agendamento.getId() + "] Dia: [" + agendamento.getDiaSemana() + "] Turno: [" + agendamento.getTurno() + "]");
+            System.out.println("ID: [" + agendamento.getId() + "] Dia: [" + agendamento.getDiaSemana() + "] Turno: [" + agendamento.getTurno() + "] Vagas: [" + agendamento.getVagas() + "]");
         }
 
         return agendamentos;
@@ -149,6 +148,8 @@ public class AgendamentoService {
         // Solicita ao usuário que escolha um ID para excluir
         System.out.println("");
         System.out.print("Digite o ID do agendamento que deseja excluir: ");
+        System.out.println();
+        System.out.println("===========================================");
         long agendamentoId = Long.parseLong(scanner.nextLine());
     
         // Verifica se o ID fornecido está na lista de agendamentos
@@ -163,9 +164,12 @@ public class AgendamentoService {
             System.out.println("");
             System.out.println("Agendamento excluído com sucesso!");
             System.out.println("");
+            System.out.println("===========================================");
         } else {
             System.out.println("");
             System.out.println("ID de agendamento inválido. Nenhum agendamento foi excluído.");
+            System.out.println();
+            System.out.println("===========================================");
         }
     }
 
@@ -202,13 +206,23 @@ public class AgendamentoService {
             System.out.print("Digite o novo número de vagas do agendamento: ");
             int novaVaga = scanner.nextInt();
             agendamento.setVagas(novaVaga);
-    
             // Salva as alterações no banco de dados
             agendamentoRepository.save(agendamento);
-    
+            
+            System.out.println();
+            System.out.println("===========================================");
+            System.out.println();
             System.out.println("Agendamento editado com sucesso!");
+            System.out.println();
+            System.out.println("===========================================");
         } else {
+            System.out.println();
+            System.out.println("===========================================");
+            System.out.println();
             System.out.println("ID de agendamento inválido. Nenhum agendamento foi editado.");
+            System.out.println();
+            System.out.println("===========================================");
+
         }
     }
 }

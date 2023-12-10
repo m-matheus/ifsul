@@ -127,7 +127,8 @@ public class UsuarioService {
         // disciplina
         if (usuario instanceof Professor) {
             // Solicita ao usuário que digite as informações da disciplina
-            System.out.println("-------- Cadastro de Disciplina --------");
+            System.out.println("===========================================");
+            System.out.println("---------- Cadastro de Disciplina ---------");
             System.out.print("Digite o nome da disciplina: ");
             String nomeDisciplina = scanner.nextLine();
 
@@ -149,9 +150,7 @@ public class UsuarioService {
             System.out.println();
             System.out.println("Disciplina cadastrada com sucesso!");
             System.out.println();
-        } else {
-            // Mensagem indicando que apenas professores podem cadastrar disciplinas
-            System.out.println("Apenas professores podem cadastrar disciplinas.");
+            System.out.println("===========================================");
         }
     }
 
@@ -161,11 +160,11 @@ public class UsuarioService {
         return estudanteRepository.findByMonitor(true);
     }
 
-    public List<Disciplina> listarDisciplinasDisponiveis() {
-        // Utiliza o método findAll do repositório de disciplinas para retornar a lista
-        // completa de disciplinas
-        return disciplinaRepository.findAll();
-    }
+    // public List<Disciplina> listarDisciplinasDisponiveis() {
+    //     // Utiliza o método findAll do repositório de disciplinas para retornar a lista
+    //     // completa de disciplinas
+    //     return disciplinaRepository.findAll();
+    // }
 
     public List<Usuario> listarUsuarios() {
         System.out.println("===========================================");
