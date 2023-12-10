@@ -8,7 +8,6 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import br.com.ifsul.monitoraifsul.entity.Agendamento;
 import br.com.ifsul.monitoraifsul.entity.Disciplina;
 import br.com.ifsul.monitoraifsul.entity.Estudante;
 import br.com.ifsul.monitoraifsul.entity.Professor;
