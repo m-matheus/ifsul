@@ -60,9 +60,9 @@ public class AgendamentoService {
     public void selecionarAgendamento(Scanner scanner, Estudante estudante) {
         // Obtém a lista de agendamentos disponíveis pela disciplina
         List<Agendamento> agendamentosDisponiveis = agendamentoRepository.findByDisciplina(estudante.getDisciplina());
-
+    
         // Verifica se há agendamentos disponíveis
-        if (!agendamentosDisponiveis.isEmpty() && !estudante.isMonitor() == true) {
+        if (!agendamentosDisponiveis.isEmpty() && !estudante.isMonitor()) {
             // Exibe os agendamentos disponíveis para que o estudante faça uma escolha
             System.out.println("===========================================");
             System.out.println("Agendamentos Disponíveis:");
@@ -70,30 +70,45 @@ public class AgendamentoService {
                 System.out.println("[" + agendamento.getId() + "] Dia: " + agendamento.getDiaSemana() +
                         ", Turno: " + agendamento.getTurno() + ", Vagas: " + agendamento.getVagas());
             }
-
+    
             // Solicita ao usuário que digite o ID do agendamento que deseja selecionar
             System.out.println("");
             System.out.println("Digite o ID do agendamento que deseja selecionar: ");
             System.out.println("===========================================");
             long agendamentoId = scanner.nextLong();
             scanner.nextLine();
-
+    
             // Busca o agendamento no repositório pelo ID fornecido, lançando uma exceção se
             // não for encontrado
             Agendamento agendamentoSelecionado = agendamentoRepository.findById(agendamentoId)
                     .orElseThrow(() -> new RuntimeException("Agendamento não encontrado com o ID: " + agendamentoId));
-
-            // Adiciona o agendamento selecionado à agenda normal do estudante e salva as
-            // alterações no repositório de estudantes
-            estudante.getAgendaNormal().add(agendamentoSelecionado);
-            estudanteRepository.save(estudante);
-
-            // Mensagem indicando que o agendamento foi selecionado com sucesso
-            System.out.println("===========================================");
-            System.out.println("");
-            System.out.println("Agendamento selecionado com sucesso!");
-            System.out.println("");
-            System.out.println("===========================================");
+    
+            // Verifica se há vagas disponíveis no agendamento
+            if (agendamentoSelecionado.getVagas() > 0) {
+                // Adiciona o agendamento selecionado à agenda normal do estudante
+                estudante.getAgendaNormal().add(agendamentoSelecionado);
+    
+                // Diminui o número de vagas no agendamento
+                agendamentoSelecionado.setVagas(agendamentoSelecionado.getVagas() - 1);
+    
+                // Salva as alterações nos repositórios de estudantes e agendamentos
+                estudanteRepository.save(estudante);
+                agendamentoRepository.save(agendamentoSelecionado);
+    
+                // Mensagem indicando que o agendamento foi selecionado com sucesso
+                System.out.println("===========================================");
+                System.out.println("");
+                System.out.println("Agendamento selecionado com sucesso!");
+                System.out.println("");
+                System.out.println("===========================================");
+            } else {
+                // Mensagem indicando que não há vagas disponíveis no agendamento
+                System.out.println("===========================================");
+                System.out.println("");
+                System.out.println("Não há vagas disponíveis no agendamento selecionado.");
+                System.out.println("");
+                System.out.println("===========================================");
+            }
         } else {
             // Mensagem indicando que não há agendamentos disponíveis para a disciplina
             // associada

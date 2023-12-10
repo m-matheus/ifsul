@@ -3,12 +3,14 @@ package br.com.ifsul.monitoraifsul.service;
 import java.util.Scanner;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import br.com.ifsul.monitoraifsul.entity.Disciplina;
 import br.com.ifsul.monitoraifsul.entity.Estudante;
 import br.com.ifsul.monitoraifsul.repository.DisciplinaRepository;
 import br.com.ifsul.monitoraifsul.repository.EstudanteRepository;
 
+@Service
 public class DisciplinaService {
 
     @Autowired
