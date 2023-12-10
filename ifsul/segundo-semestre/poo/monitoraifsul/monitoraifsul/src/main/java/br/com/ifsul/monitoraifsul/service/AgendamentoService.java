@@ -20,6 +20,43 @@ public class AgendamentoService {
     @Autowired
     private EstudanteRepository estudanteRepository;
 
+    public void disponibilizarAgendamentos(Scanner scanner, Estudante estudante) {
+        // Verifica se o estudante é um monitor e está associado a uma disciplina antes
+        // de permitir a disponibilização de agendamentos
+        if (estudante.isMonitor() && estudante.getDisciplina() != null) {
+            // Solicita ao usuário que digite as informações do agendamento
+            System.out.println("===========================================");
+            System.out.print("Digite o dia da semana do agendamento: ");
+            String diaSemana = scanner.nextLine();
+            System.out.print("Digite o turno do agendamento: ");
+            String turno = scanner.nextLine();
+            System.out.print("Digite o número de vagas disponíveis: ");
+            int vagas = scanner.nextInt();
+            scanner.nextLine();
+
+            // Cria uma nova instância de Agendamento e atribui os dados fornecidos
+            Agendamento agendamento = new Agendamento();
+            agendamento.setDiaSemana(diaSemana);
+            agendamento.setTurno(turno);
+            agendamento.setVagas(vagas);
+
+            // Salva o agendamento no repositório de agendamentos
+            agendamentoRepository.save(agendamento);
+
+            // Mensagem indicando que o agendamento foi disponibilizado com sucesso
+            System.out.println("");
+            System.out.println("===========================================");
+            System.out.println("");
+            System.out.println("Agendamento disponibilizado com sucesso!");
+            System.out.println("");
+            System.out.println("===========================================");
+        } else {
+            // Mensagem indicando que apenas estudantes monitores associados a uma
+            // disciplina podem disponibilizar agendamentos
+            System.out.println("Você não é um estudante monitor ou não está associado a uma disciplina.");
+        }
+    }
+
     public void selecionarAgendamento(Scanner scanner, Estudante estudante) {
         // Obtém a lista de agendamentos disponíveis pela disciplina
         List<Agendamento> agendamentosDisponiveis = agendamentoRepository.findByDisciplina(estudante.getDisciplina());
@@ -65,43 +102,6 @@ public class AgendamentoService {
             System.out.println("Não há agendamentos disponíveis para a disciplina associada.");
             System.out.println("");
             System.out.println("===========================================");
-        }
-    }
-
-    public void disponibilizarAgendamentos(Scanner scanner, Estudante estudante) {
-        // Verifica se o estudante é um monitor e está associado a uma disciplina antes
-        // de permitir a disponibilização de agendamentos
-        if (estudante.isMonitor() && estudante.getDisciplina() != null) {
-            // Solicita ao usuário que digite as informações do agendamento
-            System.out.println("===========================================");
-            System.out.print("Digite o dia da semana do agendamento: ");
-            String diaSemana = scanner.nextLine();
-            System.out.print("Digite o turno do agendamento: ");
-            String turno = scanner.nextLine();
-            System.out.print("Digite o número de vagas disponíveis: ");
-            int vagas = scanner.nextInt();
-            scanner.nextLine();
-
-            // Cria uma nova instância de Agendamento e atribui os dados fornecidos
-            Agendamento agendamento = new Agendamento();
-            agendamento.setDiaSemana(diaSemana);
-            agendamento.setTurno(turno);
-            agendamento.setVagas(vagas);
-
-            // Salva o agendamento no repositório de agendamentos
-            agendamentoRepository.save(agendamento);
-
-            // Mensagem indicando que o agendamento foi disponibilizado com sucesso
-            System.out.println("");
-            System.out.println("===========================================");
-            System.out.println("");
-            System.out.println("Agendamento disponibilizado com sucesso!");
-            System.out.println("");
-            System.out.println("===========================================");
-        } else {
-            // Mensagem indicando que apenas estudantes monitores associados a uma
-            // disciplina podem disponibilizar agendamentos
-            System.out.println("Você não é um estudante monitor ou não está associado a uma disciplina.");
         }
     }
 }
