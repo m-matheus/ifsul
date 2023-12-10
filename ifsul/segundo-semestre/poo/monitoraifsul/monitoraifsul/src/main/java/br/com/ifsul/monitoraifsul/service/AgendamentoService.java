@@ -225,4 +225,44 @@ public class AgendamentoService {
 
         }
     }
+
+    public void desassociarEstudanteDoAgendamento(Scanner scanner, Estudante estudante) {
+        // Verifica se o estudante tem agendamentos
+        if (!estudante.getAgendaNormal().isEmpty()) {
+            // Exibe os agendamentos associados ao estudante
+            System.out.println("Agendamentos associados ao estudante:");
+            for (Agendamento agendamento : estudante.getAgendaNormal()) {
+                System.out.println("ID: " + agendamento.getId() + ", Dia: " + agendamento.getDiaSemana() +
+                        ", Turno: " + agendamento.getTurno() + ", Vagas: " + agendamento.getVagas());
+            }
+    
+            // Solicita ao usuário que digite o ID do agendamento para desassociar
+            System.out.print("Digite o ID do agendamento que deseja desassociar: ");
+            long agendamentoId = Long.parseLong(scanner.nextLine());
+    
+            // Busca o agendamento no conjunto de agendamentos do estudante
+            Agendamento agendamentoParaDesassociar = estudante.getAgendaNormal().stream()
+                    .filter(agendamento -> agendamento.getId() == agendamentoId)
+                    .findFirst()
+                    .orElse(null);
+    
+            if (agendamentoParaDesassociar != null) {
+                // Incrementa o número de vagas no agendamento
+                agendamentoParaDesassociar.setVagas(agendamentoParaDesassociar.getVagas() + 1);
+    
+                // Remove o agendamento do conjunto de agendamentos do estudante
+                estudante.getAgendaNormal().remove(agendamentoParaDesassociar);
+    
+                // Salva as alterações nos repositórios
+                agendamentoRepository.save(agendamentoParaDesassociar);
+                estudanteRepository.save(estudante);
+    
+                System.out.println("Estudante desassociado do agendamento com sucesso.");
+            } else {
+                System.out.println("Agendamento não encontrado. Nenhuma alteração realizada.");
+            }
+        } else {
+            System.out.println("O estudante não tem agendamentos associados.");
+        }
+    }
 }

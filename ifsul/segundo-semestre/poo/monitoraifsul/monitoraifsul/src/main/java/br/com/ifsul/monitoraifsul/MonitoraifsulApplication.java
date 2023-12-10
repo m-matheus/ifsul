@@ -2,13 +2,13 @@ package br.com.ifsul.monitoraifsul;
 
 import java.util.Scanner;
 
-import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import br.com.ifsul.monitoraifsul.entity.Disciplina;
+
 import br.com.ifsul.monitoraifsul.entity.Estudante;
 import br.com.ifsul.monitoraifsul.entity.Professor;
 import br.com.ifsul.monitoraifsul.entity.Usuario;
@@ -150,8 +150,9 @@ public class MonitoraifsulApplication implements CommandLineRunner {
                             System.out.println("[3] Disponibilizar Agendamento (MONITOR)");
                             System.out.println("[4] Editar Agendamento (MONITOR)");
                             System.out.println("[5] Excluir Agendamento (MONITOR)");
-                            System.out.println("[6] Marcar Agendamento (ESTUDANTE)");                    
-                            System.out.println("[7] Logout");
+                            System.out.println("[6] Marcar Agendamento (ESTUDANTE)");                  
+                            System.out.println("[7] Desmarcar Agendamento (ESTUDANTE)");                  
+                            System.out.println("[8] Logout");
                             System.out.println("===========================================");
                         
                             // Solicita ao estudante que escolha uma opção
@@ -226,7 +227,10 @@ public class MonitoraifsulApplication implements CommandLineRunner {
                                        System.out.println("===========================================");
                                     }
                                     break;
-                                case 7:
+                                case 7: 
+                                    agendamentoService.desassociarEstudanteDoAgendamento(scanner, estudanteLogado);
+                                    break;
+                                case 8:
                                     // Efetua o logout e encerra o loop de interação com o estudante
                                     usuarioLogado = null;
                                     voltar = true;
