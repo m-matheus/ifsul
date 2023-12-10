@@ -8,19 +8,28 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import br.com.ifsul.monitoraifsul.entity.Agendamento;
 import br.com.ifsul.monitoraifsul.entity.Disciplina;
 import br.com.ifsul.monitoraifsul.entity.Estudante;
 import br.com.ifsul.monitoraifsul.entity.Professor;
 import br.com.ifsul.monitoraifsul.entity.Usuario;
+import br.com.ifsul.monitoraifsul.service.AgendamentoService;
+import br.com.ifsul.monitoraifsul.service.DisciplinaService;
 import br.com.ifsul.monitoraifsul.service.UsuarioService;
 
 
 @SpringBootApplication
 public class MonitoraifsulApplication implements CommandLineRunner {
     
-    // Injeta automáticamente uma instância de UsuarioService
+    // Injeta automáticamente uma instância de UsuarioService e AgendamentoService
     @Autowired
     private UsuarioService usuarioService;
+
+    @Autowired
+    private AgendamentoService agendamentoService;
+
+    @Autowired
+    private DisciplinaService disciplinaService;
 
     public static void main(String[] args) {
         SpringApplication.run(MonitoraifsulApplication.class, args);
@@ -160,7 +169,7 @@ public class MonitoraifsulApplication implements CommandLineRunner {
                                         System.out.println("[" + disciplina.getId() + "] " + disciplina.getMateria());
                                     }
                                                                 
-                                        usuarioService.associarDisciplina(scanner, estudanteLogado);
+                                        disciplinaService.associarDisciplina(scanner, estudanteLogado);
                                         break;
                                     }else{
                                         System.out.println("===========================================");
@@ -173,7 +182,7 @@ public class MonitoraifsulApplication implements CommandLineRunner {
                                 case 3:
                                     // Permite ao estudante monitor disponibilizar agendamentos
                                     if (estudanteLogado.isMonitor()) {
-                                        usuarioService.disponibilizarAgendamentos(scanner, estudanteLogado);
+                                        agendamentoService.disponibilizarAgendamentos(scanner, estudanteLogado);
                                         break;
                                     }else{
                                        System.out.println("===========================================");
@@ -186,7 +195,7 @@ public class MonitoraifsulApplication implements CommandLineRunner {
                                 case 4:
                                     // Permite ao estudante não monitor selecionar um agendamento disponível
                                     if (!estudanteLogado.isMonitor()) {
-                                        usuarioService.selecionarAgendamento(scanner, estudanteLogado);
+                                        agendamentoService.selecionarAgendamento(scanner, estudanteLogado);
                                         break;
                                     }else{
                                        System.out.println("===========================================");
