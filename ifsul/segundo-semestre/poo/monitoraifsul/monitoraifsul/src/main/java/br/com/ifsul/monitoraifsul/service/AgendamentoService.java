@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.ifsul.monitoraifsul.entity.Agendamento;
+import br.com.ifsul.monitoraifsul.entity.Disciplina;
 import br.com.ifsul.monitoraifsul.entity.Estudante;
+import br.com.ifsul.monitoraifsul.entity.Usuario;
 import br.com.ifsul.monitoraifsul.repository.AgendamentoRepository;
 import br.com.ifsul.monitoraifsul.repository.EstudanteRepository;
 
@@ -117,6 +119,55 @@ public class AgendamentoService {
             System.out.println("Não há agendamentos disponíveis para a disciplina associada.");
             System.out.println("");
             System.out.println("===========================================");
+        }
+    }
+
+    public List<Agendamento> listarAgendamentos() {
+        // Utiliza o método findAll do repositório de agendamentos para retornar a lista
+        // completa de agendamentos
+        System.out.println("===========================================");
+        System.out.println("------------ Lista de Agendamentos ------------");
+        System.out.println("");
+
+        List<Agendamento> agendamentos = agendamentoRepository.findAll();
+        
+        for (Agendamento agendamento : agendamentos) {
+            System.out.println("ID: [" + agendamento.getId() + "] Dia: [" + agendamento.getDiaSemana() + "] Turno: [" + agendamento.getTurno() + "]");
+        }
+
+        return agendamentos;
+    }
+
+    public void excluirAgendamento(Scanner scanner) {
+        
+        // Lista os agendamentos disponíveis
+        List<Agendamento> agendamentos = listarAgendamentos();
+    
+        if (agendamentos.isEmpty()) {
+            System.out.println("Não há agendamentos para excluir.");
+            return;
+        }
+    
+        // Solicita ao usuário que escolha um ID para excluir
+        System.out.println("");
+        System.out.print("Digite o ID do agendamento que deseja excluir: ");
+        long agendamentoId = Long.parseLong(scanner.nextLine());
+    
+        // Verifica se o ID fornecido está na lista de agendamentos
+        boolean agendamentoEncontrado = agendamentos.stream().anyMatch(agendamento -> agendamento.getId() == agendamentoId);
+    
+        if (agendamentoEncontrado) {
+            // Busca o usuário no banco de dados pelo ID e o exclui
+            Agendamento agendamento = agendamentoRepository.findById(agendamentoId)
+                    .orElseThrow(() -> new RuntimeException("Agendamento não encontrado com o ID: " + agendamentoId));
+    
+            agendamentoRepository.delete(agendamento);
+            System.out.println("");
+            System.out.println("Agendamento excluído com sucesso!");
+            System.out.println("");
+        } else {
+            System.out.println("");
+            System.out.println("ID de agendamento inválido. Nenhum agendamento foi excluído.");
         }
     }
 }

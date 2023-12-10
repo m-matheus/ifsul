@@ -1,5 +1,6 @@
 package br.com.ifsul.monitoraifsul.service;
 
+import java.util.List;
 import java.util.Scanner;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,6 +53,60 @@ public class DisciplinaService {
             System.out.println("Você não é um estudante monitor. Não pode associar a uma disciplina.");
             System.out.println("");
             System.out.println("===========================================");
+        }
+    }
+    public List<Disciplina> listarDisciplinas() {
+        // Utiliza o método findAll do repositório de disciplinas para retornar a lista completa de disciplinas
+        System.out.println("===========================================");
+        System.out.println("------------ Lista de Disciplinas ------------");
+        System.out.println("");
+    
+        List<Disciplina> disciplinas = disciplinaRepository.findAll();
+        
+        for (Disciplina disciplina : disciplinas) {
+            System.out.println("ID: [" + disciplina.getId() + "] Materia: [" + disciplina.getMateria() + "]");
+        }
+    
+        return disciplinas;
+    }
+    
+    public void excluirDisciplina(Scanner scanner) {
+        
+        // Lista as disciplinas disponíveis
+        List<Disciplina> disciplinas = listarDisciplinas();
+    
+        if (disciplinas.isEmpty()) {
+            System.out.println("Não há disciplinas para excluir.");
+            return;
+        }
+    
+        // Solicita ao usuário que escolha um ID para excluir
+        System.out.println("");
+        System.out.print("Digite o ID da disciplina que deseja excluir: ");
+        long disciplinaId = Long.parseLong(scanner.nextLine());
+    
+        // Verifica se o ID fornecido está na lista de disciplinas
+        boolean disciplinaEncontrada = disciplinas.stream().anyMatch(disciplina -> disciplina.getId() == disciplinaId);
+    
+        if (disciplinaEncontrada) {
+            // Busca a disciplina no banco de dados pelo ID e a exclui
+            Disciplina disciplina = disciplinaRepository.findById(disciplinaId)
+                    .orElseThrow(() -> new RuntimeException("Disciplina não encontrada com o ID: " + disciplinaId));
+    
+            List<Estudante> estudantes = estudanteRepository.findByDisciplina(disciplina);
+            
+            for (Estudante estudante : estudantes) {
+                estudante.setDisciplina(null);
+                estudanteRepository.save(estudante);
+            }
+            
+            disciplinaRepository.delete(disciplina);
+            System.out.println("");
+            System.out.println("Disciplina excluída com sucesso!");
+            System.out.println("");
+        } else {
+            System.out.println("");
+            System.out.println("ID de disciplina inválido. Nenhuma disciplina foi excluída.");
         }
     }
 }
