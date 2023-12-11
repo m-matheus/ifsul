@@ -21,6 +21,9 @@ public class Estudante extends Usuario {
     @OneToMany(mappedBy = "estudanteMonitor")
     private List<Agendamento> agendaMonitor;
 
+    // @OneToMany indica um relacionamento um-para-muitos entre Estudante e Agendamento.
+    // MappedBy = "estudanteNormal" especifica que o lado "muitos" (Agendamento) é responsável pelo mapeamento.
+    // Fetch = FetchType.EAGER = estudante e agendamento carregando junto.
     @OneToMany(mappedBy = "estudanteNormal", fetch = FetchType.EAGER)
     private List<Agendamento> agendaNormal;
 

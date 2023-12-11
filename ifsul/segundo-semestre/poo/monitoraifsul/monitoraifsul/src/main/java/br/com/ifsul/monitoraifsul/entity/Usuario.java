@@ -16,6 +16,7 @@ import jakarta.persistence.DiscriminatorType;
 @Entity
 // Faz com que cada herança tenha a sua própria tabela.
 @Inheritance(strategy = InheritanceType.JOINED)
+// Coluna criada no banco para diferenciar um professor de um estudante
 @DiscriminatorColumn(name = "dtype", discriminatorType = DiscriminatorType.STRING)
 public class Usuario implements Serializable{
     // @Id: marca a variável como chave primária.
