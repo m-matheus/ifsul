@@ -233,7 +233,16 @@ public class MonitoraifsulApplication implements CommandLineRunner {
                                     }
                                     break;
                                 case 7: 
-                                    agendamentoService.desassociarEstudanteDoAgendamento(scanner, estudanteLogado);
+                                    if (!estudanteLogado.isMonitor()) {
+                                        agendamentoService.desassociarEstudanteDoAgendamento(scanner, estudanteLogado);
+                                        break;
+                                    }else{
+                                       System.out.println("===========================================");
+                                       System.out.println("");
+                                       System.out.println("ERRO! Você não possui autorização para selecionar essa opção.");
+                                       System.out.println("");
+                                       System.out.println("===========================================");
+                                    }
                                     break;
                                 case 8:
                                     // Efetua o logout e encerra o loop de interação com o estudante
