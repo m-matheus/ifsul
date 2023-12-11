@@ -230,14 +230,15 @@ public class AgendamentoService {
         // Verifica se o estudante tem agendamentos
         if (!estudante.getAgendaNormal().isEmpty()) {
             // Exibe os agendamentos associados ao estudante
-            System.out.println("Agendamentos associados ao estudante:");
-            for (Agendamento agendamento : estudante.getAgendaNormal()) {
-                System.out.println("ID: " + agendamento.getId() + ", Dia: " + agendamento.getDiaSemana() +
-                        ", Turno: " + agendamento.getTurno() + ", Vagas: " + agendamento.getVagas());
-            }
-    
+            listarAgendamentos();
+            // for (Agendamento agendamento : estudante.getAgendaNormal()) {
+            //     System.out.println("ID: " + agendamento.getId() + ", Dia: " + agendamento.getDiaSemana() +
+            //             ", Turno: " + agendamento.getTurno() + ", Vagas: " + agendamento.getVagas());
+            // }
+            
             // Solicita ao usuário que digite o ID do agendamento para desassociar
-            System.out.print("Digite o ID do agendamento que deseja desassociar: ");
+            System.out.println();
+            System.out.print("Digite o ID do agendamento que deseja cancelar: ");
             long agendamentoId = Long.parseLong(scanner.nextLine());
     
             // Busca o agendamento no conjunto de agendamentos do estudante
@@ -257,12 +258,20 @@ public class AgendamentoService {
                 agendamentoRepository.save(agendamentoParaDesassociar);
                 estudanteRepository.save(estudante);
     
-                System.out.println("Estudante desassociado do agendamento com sucesso.");
+                System.out.println();
+                System.out.println("Agendamento cancelado com sucesso.");
+                System.out.println("===========================================");
             } else {
+                System.out.println();
                 System.out.println("Agendamento não encontrado. Nenhuma alteração realizada.");
+                System.out.println("===========================================");
             }
         } else {
-            System.out.println("O estudante não tem agendamentos associados.");
+            System.out.println("===========================================");
+            System.out.println();
+            System.out.println("O estudante não tem agendamentos marcados.");
+            System.out.println();
+            System.out.println("===========================================");
         }
     }
 }

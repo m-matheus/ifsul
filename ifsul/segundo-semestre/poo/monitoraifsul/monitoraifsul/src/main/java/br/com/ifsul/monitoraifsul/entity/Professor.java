@@ -15,14 +15,7 @@ public class Professor extends Usuario{
     @OneToMany(mappedBy = "professor")
     private List<Disciplina> disciplinas;
 
-//    public void adicionarDisciplina(Disciplina disciplina) {
-//        if (disciplinas == null) {
-//            disciplinas = new ArrayList<>();
-//        }
-//        disciplinas.add(disciplina);
-//    }
-
-    
+  
     public Professor() {
         super();
     }

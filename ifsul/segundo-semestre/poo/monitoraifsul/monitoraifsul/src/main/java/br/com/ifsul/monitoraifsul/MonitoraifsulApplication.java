@@ -146,12 +146,17 @@ public class MonitoraifsulApplication implements CommandLineRunner {
                         while (!voltar){   
                             System.out.println("----------- Pagina do Estudante -----------");
                             System.out.println("[1] Ver Disciplinas Disponíveis");
-                            System.out.println("[2] Associar a uma Disciplina (MONITOR)");
-                            System.out.println("[3] Disponibilizar Agendamento (MONITOR)");
-                            System.out.println("[4] Editar Agendamento (MONITOR)");
-                            System.out.println("[5] Excluir Agendamento (MONITOR)");
-                            System.out.println("[6] Marcar Agendamento (ESTUDANTE)");                  
-                            System.out.println("[7] Desmarcar Agendamento (ESTUDANTE)");                  
+                            System.out.println();
+                            System.out.println("---------------- Monitores: ---------------");
+                            System.out.println("[2] Associar a uma Disciplina");
+                            System.out.println("[3] Disponibilizar Agendamento");
+                            System.out.println("[4] Editar Agendamento");
+                            System.out.println("[5] Excluir Agendamento");
+                            System.out.println();
+                            System.out.println("--------------- Estudantes: ---------------");
+                            System.out.println("[6] Marcar Agendamento");                  
+                            System.out.println("[7] Cancelar Agendamento");                  
+                            System.out.println();
                             System.out.println("[8] Logout");
                             System.out.println("===========================================");
                         
