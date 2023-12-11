@@ -231,10 +231,6 @@ public class AgendamentoService {
         if (!estudante.getAgendaNormal().isEmpty()) {
             // Exibe os agendamentos associados ao estudante
             listarAgendamentos();
-            // for (Agendamento agendamento : estudante.getAgendaNormal()) {
-            //     System.out.println("ID: " + agendamento.getId() + ", Dia: " + agendamento.getDiaSemana() +
-            //             ", Turno: " + agendamento.getTurno() + ", Vagas: " + agendamento.getVagas());
-            // }
             
             // Solicita ao usuário que digite o ID do agendamento para desassociar
             System.out.println();
