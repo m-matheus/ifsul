@@ -160,12 +160,6 @@ public class UsuarioService {
         return estudanteRepository.findByMonitor(true);
     }
 
-    // public List<Disciplina> listarDisciplinasDisponiveis() {
-    //     // Utiliza o método findAll do repositório de disciplinas para retornar a lista
-    //     // completa de disciplinas
-    //     return disciplinaRepository.findAll();
-    // }
-
     public List<Usuario> listarUsuarios() {
         System.out.println("===========================================");
         System.out.println("------------ Lista de Usuários ------------");
