@@ -1,0 +1,8 @@
+# Scrum master
+É como um líder, responsável por potencializar o trabalho das equipes, orientando e facilitando a comunicação entre os times.
+
+## Product Owner
+Responsável por materializar as necessidades do usuário final. Serve como "meio de campo" entre o cliente e a empresa que está desenvolvendo. 
+
+## Dev team
+É o time de desenvolvimento do produto.
