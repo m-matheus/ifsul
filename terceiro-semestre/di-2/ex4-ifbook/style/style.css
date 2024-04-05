@@ -1,4 +1,5 @@
 
+/* centralizando os titulos (h1, h3) na pagina. */
 h1, h3 {
     text-align: center;
 }
