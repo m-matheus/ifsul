@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // criando uma const para inserir linhas na tabela
     const newRow = table.insertRow();
     // adicionando o nosso contador 
-    friendCounter++;
+    
     // adicionando no html uma linha na tabela com os dados desejados
     newRow.innerHTML = `  
         <tr>
@@ -30,6 +30,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // percorrendo a lista de amigos e realizando a pergunta se é ou não amigo
   for (let i = 0; i < listaPessoas.length; i++) {
     const confirma = confirm(`Você é amigo(a) do(a) ${listaPessoas[i]}?`);
+    friendCounter++;
     if (confirma) {
       // se sim, adiciona na lista de amigos e chama a funcao de adicao
       amigos.push(listaPessoas[i]);
