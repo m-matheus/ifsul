@@ -9,6 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const amigos = [];
   // contador de amigo para colocar o numero do inicio da tabela e também colocarmos a foto da respectiva pessoa
   let friendCounter = 0;
+  let rowCounter = 0;
   // criando uma funcao de acição de amigos
   function addNewFriend(name) {
     // usando queryselector para selecionar a classe table (que esta na nossa tabela)
@@ -16,11 +17,11 @@ document.addEventListener("DOMContentLoaded", function () {
     // criando uma const para inserir linhas na tabela
     const newRow = table.insertRow();
     // adicionando o nosso contador 
-    
+    rowCounter++;
     // adicionando no html uma linha na tabela com os dados desejados
     newRow.innerHTML = `  
         <tr>
-          <th scope="row">${friendCounter}</th>
+          <th scope="row">${rowCounter}</th>
           <td><img src="image/${friendCounter}.jpeg" alt=""></td>
           <td>${name}</td>
           <td>${new Date}</td>
