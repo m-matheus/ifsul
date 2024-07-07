@@ -1,49 +1,52 @@
-import java.util.List;
-
-import domain.Node;
-import domain.NodeOfNodes;
+import domain.LinkedList;
 
 public class App {
     public static void main(String[] args) throws Exception {
         
-        Node node1 = new Node(5);
-        node1.add(7);
-        node1.add(8);
-        node1.add(20);
+        LinkedList list1 = new LinkedList();
+        list1.add(5);
+        list1.add(7);
+        list1.add(8);
+        list1.add(20);
         
-        Node node2 = new Node(10);
-        node2.add(20);
+        LinkedList list2 = new LinkedList();
+        list2.add(10);
+        list2.add(20);
 
-        Node node3 = new Node(19);
-        node3.add(22);        
-        node3.add(50);
+        LinkedList list3 = new LinkedList();
+        list3.add(19);        
+        list3.add(22);        
+        list3.add(50);
 
-        Node node4 = new Node(28);
-        node4.add(35);
-        node4.add(40);
-        node4.add(45);
+        LinkedList list4 = new LinkedList();
+        list4.add(28);
+        list4.add(35);
+        list4.add(40);
+        list4.add(45);
 
-        System.out.println("Node 1:");
-        node1.printList(node1);
-        System.out.println("Node 2:");
-        node2.printList(node2);
-        System.out.println("Node 3:");
-        node3.printList(node3);
-        System.out.println("Node 4:");
-        node4.printList(node4);
+        System.out.println("Linked Lists:");
+        System.out.println("List 1:");
+        list1.printList(list1);
+        System.out.println("List 2:");
+        list2.printList(list2);
+        System.out.println("List 3:");
+        list3.printList(list3);
+        System.out.println("List 4:");
+        list4.printList(list4);
         System.out.println();
 
-        NodeOfNodes nodeOfNodes = new NodeOfNodes(node1);
-        nodeOfNodes.addNode(node2);
-        nodeOfNodes.addNode(node3);
-        nodeOfNodes.addNode(node4);
+        LinkedList listOfnodes = new LinkedList();
+        listOfnodes.addNode(list1);
+        listOfnodes.addNode(list2);
+        listOfnodes.addNode(list3);
+        listOfnodes.addNode(list4);
 
-        System.out.println("Node of Nodes:");
-        nodeOfNodes.printListOfNodeOfNodes(nodeOfNodes);
+        System.out.println("List of Nodes:");
+        listOfnodes.printNodeOfNodes(listOfnodes);
         System.out.println();
 
-        List<Node> flatList = nodeOfNodes.flatening(nodeOfNodes);
-        System.out.println("Flatened List:");
-        nodeOfNodes.printFlatenedList(flatList);
+        listOfnodes.flatening();
+        System.out.println("Flattened List:");
+        listOfnodes.printFlattenedList();
     }
 }
