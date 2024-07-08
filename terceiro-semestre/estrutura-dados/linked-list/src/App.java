@@ -1,4 +1,5 @@
 import domain.LinkedList;
+import domain.Node;
 
 public class App {
     public static void main(String[] args) throws Exception {
@@ -24,6 +25,9 @@ public class App {
         list4.add(40);
         list4.add(45);
 
+        Node nodeToDelete = list1.get(1);
+        list1.deleteWithoutTraversing(nodeToDelete);
+
         System.out.println("Linked Lists:");
         System.out.println("List 1:");
         list1.printList(list1);
@@ -35,18 +39,18 @@ public class App {
         list4.printList(list4);
         System.out.println();
 
-        LinkedList listOfnodes = new LinkedList();
-        listOfnodes.addNode(list1);
-        listOfnodes.addNode(list2);
-        listOfnodes.addNode(list3);
-        listOfnodes.addNode(list4);
+        // LinkedList listOfnodes = new LinkedList();
+        // listOfnodes.addNode(list1);
+        // listOfnodes.addNode(list2);
+        // listOfnodes.addNode(list3);
+        // listOfnodes.addNode(list4);
 
-        System.out.println("List of Nodes:");
-        listOfnodes.printNodeOfNodes(listOfnodes);
-        System.out.println();
+        // System.out.println("List of Nodes:");
+        // listOfnodes.printNodeOfNodes(listOfnodes);
+        // System.out.println();
 
-        listOfnodes.flatening();
-        System.out.println("Flattened List:");
-        listOfnodes.printFlattenedList();
+        // listOfnodes.flatening();
+        // System.out.println("Flattened List:");
+        // listOfnodes.printFlattenedList();
     }
 }

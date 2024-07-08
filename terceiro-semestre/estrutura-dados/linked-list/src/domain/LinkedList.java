@@ -26,16 +26,58 @@ public class LinkedList {
         }
     }
 
-    public boolean deleteData(Node pos) {
-        if (pos == null || pos.getNext() == null) {
-            return false; 
+    public void deleteData(Node pos) {
+        if (head == null || pos == null) {
+            return;
         }
-        pos.setData(pos.getNext().getData());
-        pos.setNext(pos.getNext().getNext());
-        return true;
+        if (pos == head) {
+            head = head.getNext();
+            return;
+        }
+        Node current = head;
+        while (current.getNext() != null && current.getNext() != pos) {
+            current = current.getNext();
+        }
+        if (current.getNext() == pos) {
+            current.setNext(pos.getNext());
+        }
     }
 
-    // NODEOFNODES
+    public void deleteWithoutTraversing(Node pos) {
+        if (pos == null || pos.getNext() == null) {
+            throw new IllegalArgumentException("Cannot delete the last node or a null node.");
+        }
+        Node nextNode = pos.getNext();
+        pos.setData(nextNode.getData());
+        pos.setNext(nextNode.getNext());
+    }
+
+
+    public Node get(int index) {
+        if (index < 0 || index >= this.size()) {
+            return null;
+        }
+        Node current = head;
+        int count = 0;    
+        while (current != null) {
+            if (count == index) {
+                return current;
+            }
+            count++;
+            current = current.getNext();
+        }
+        return null;
+    }
+    
+    public int size() {
+        int size = 0;
+        Node current = head;
+        while (current != null) {
+            size++;
+            current = current.getNext();
+        }
+        return size;
+    }
 
     public void addNode(LinkedList data) {
         NodeOfNodes newNode = new NodeOfNodes(data);
