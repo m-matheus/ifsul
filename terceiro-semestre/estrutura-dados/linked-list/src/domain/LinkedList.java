@@ -52,6 +52,40 @@ public class LinkedList {
         pos.setNext(nextNode.getNext());
     }
 
+    public void orderByAsc() {
+        if (head == null || head.getNext() == null) {
+            return;
+        }
+    
+        boolean wasChanged;
+        do {
+            Node current = head;
+            Node previous = null;
+            wasChanged = false;
+    
+            while (current != null && current.getNext() != null) {
+                Node next = current.getNext();
+                if (current.getData() > next.getData()) {
+                    wasChanged = true;
+                    
+                    if (previous == null) {
+                        current.setNext(next.getNext());
+                        next.setNext(current);
+                        head = next;
+                        previous = next;
+                    } else {
+                        previous.setNext(next);
+                        current.setNext(next.getNext());
+                        next.setNext(current);
+                        previous = next;
+                    }
+                } else {
+                    previous = current;
+                    current = current.getNext();
+                }
+            }
+        } while (wasChanged);
+    }
 
     public Node get(int index) {
         if (index < 0 || index >= this.size()) {
@@ -134,16 +168,11 @@ public class LinkedList {
     }
 
     public void printFlattenedList() {
-        // Passo 1: Obter a lista achatada
         LinkedList flattenedList = flatening();
-    
-        // Passo 2: Verificar se a lista está vazia
         if (flattenedList.head == null) {
             System.out.println("A lista achatada está vazia.");
             return;
         }
-    
-        // Passo 3: Percorrer a lista achatada e imprimir cada elemento
         Node current = flattenedList.head;
         while (current != null) {
             // Passo 4: Imprimir o valor do nó atual

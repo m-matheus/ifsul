@@ -6,9 +6,9 @@ public class App {
         
         LinkedList list1 = new LinkedList();
         list1.add(5);
-        list1.add(7);
-        list1.add(8);
         list1.add(20);
+        list1.add(8);
+        list1.add(7);
         
         LinkedList list2 = new LinkedList();
         list2.add(10);
@@ -28,6 +28,8 @@ public class App {
         Node nodeToDelete = list1.get(1);
         list1.deleteWithoutTraversing(nodeToDelete);
 
+        list1.orderByAsc();
+        
         System.out.println("Linked Lists:");
         System.out.println("List 1:");
         list1.printList(list1);

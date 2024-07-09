@@ -1,0 +1,124 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f5f5f5;
+}
+
+header {
+    background-color: #0d141d;
+    color: #fff;
+    padding: 1rem;
+    text-align: center;
+}
+
+h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.section-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;   
+}
+
+#top-section {
+    background-color: #f5f5f5;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+    flex-direction: column;
+    align-items: center;
+}
+
+#map img {
+    border-radius: 12px;
+    border: #0d141d05 4px solid;
+    box-shadow: 2px 1px 10px rgba(0, 0, 0, 0.1);
+}
+
+
+#bottom-section {
+    background-color: #f5f5f5;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+    flex-direction: row;
+    align-items: center;
+    gap: 100px;
+}
+
+.card {
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    flex: 1;
+
+    font-size: 1.5rem;
+    color: #fff;
+    font-weight: 500;
+    cursor: pointer;
+
+}
+
+#happy {
+    background-color: #EE971A;
+}
+
+#sad {
+    background-color: #0375BA;
+}
+
+#fear {
+    background-color: #922580;
+
+}
+
+#anger {
+    background-color: #DB3222;
+}
+
+.overlay {
+    display: none;
+}
+
+
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+
+    background-color: #0d141d;
+    color: #fff;
+    padding: 1rem;
+    text-align: center;
+}
+
+a {
+    color: #fff;
+    text-decoration: none;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+a:hover {
+    text-decoration: underline;
+}
