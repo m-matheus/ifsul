@@ -54,5 +54,9 @@ public class App {
         // listOfnodes.flatening();
         // System.out.println("Flattened List:");
         // listOfnodes.printFlattenedList();
+
+        System.out.println("Get previous node:");
+        Node node = list2.get(1);
+        System.out.println(list2.getPreviousNode(node));
     }
 }

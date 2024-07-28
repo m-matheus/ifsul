@@ -26,6 +26,17 @@ public class LinkedList {
         }
     }
 
+    public Node getPreviousNode(Node node) {
+        if (head == null || node == null) {
+            return null;
+        }
+        Node current = head;
+        while (current != null && current.getNext() != node) {
+            current = current.getNext();
+        }
+        return current;
+    }
+
     public void deleteData(Node pos) {
         if (head == null || pos == null) {
             return;
@@ -170,14 +181,12 @@ public class LinkedList {
     public void printFlattenedList() {
         LinkedList flattenedList = flatening();
         if (flattenedList.head == null) {
-            System.out.println("A lista achatada está vazia.");
+            System.out.println("Flattened list is empty.");
             return;
         }
         Node current = flattenedList.head;
         while (current != null) {
-            // Passo 4: Imprimir o valor do nó atual
             System.out.println(current.getData());
-            // Avançar para o próximo nó
             current = current.getNext();
         }
     }
