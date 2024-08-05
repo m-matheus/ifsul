@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form</title>
+    <link rel="stylesheet" href="style/index.css">
+    <script src="script/index.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h2>Service Order</h2>
+        <div class="form-wrapper">
+            <form action="" class="form">
+                <label for="clientName">Name:</label>
+                <input type="text" name="clientName" id="name" placeholder="Client name">
+
+                <label for="clientEmail">Email:</label>
+                <input type="email" name="clientEmail" id="email" placeholder="Client email">
+
+                <label for="clientPhone">Phone:</label>
+                <input type="tel" name="clientPhone" id="phone" placeholder="Client email">
+
+                <span class="divider"></span>
+
+                <label for="productName">Product Name:</label>
+                <input type="text" name="productName" id="productName" placeholder="Product name here" required>
+                
+                <label for="productCategory">Category:</label>
+                <select name="productCategory" id="productCategory" required>
+                    <option value="">Select</option>
+                    <option value="Smartphone">Smartphone</option>
+                    <option value="tablet">Tablet</option>
+                    <option value="laptop">Laptop</option>
+                    <option value="computer">Computer</option>
+                </select>
+                
+                <label for="productModel">Model:</label>
+                <input type="text" name="productModel" id="productModel" required placeholder="The model of the product">
+                
+                <label for="serviceType">Service type:</label>
+                <input type="text" name="serviceType" id="serviceType" required placeholder="The type of the service">
+                
+                <label for="orderDescription">Description:</label>
+                <textarea name="orderDescription" id="orderDescription" rows="4" required placeholder="A tiny description of the problem"></textarea>
+                
+                <button class="reset" type="reset">Reset</button>
+                <span class="divider"></span>
+                <button class="submit" type="submit">Submit</button>
+            </form>
+        </div>
+        <div class="output"></div>
+    </div>
+</body>
+</html>

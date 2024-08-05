@@ -1,0 +1,107 @@
+
+
+h2 {
+   text-align: center;
+   font-size: 2.5rem;
+   margin: 0;
+   padding: 0;
+
+   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 98vh;
+
+    font-family: 'Roboto', sans-serif;
+    background-image: radial-gradient(circle, #c9c9c9, #718f8f);
+}
+
+.form-wrapper {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   flex-direction: column;
+   
+   form {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        
+        input, select, textarea {
+            margin: 10px 0;
+            padding: 10px;
+            width: 300px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+
+        button {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 15px;
+
+            &:not(:last-child) {
+                margin-top: 10px;
+            }
+        }
+        
+   }
+}
+
+.divider {
+    display: block;
+    height: 1px; 
+    background-color: #c9c9c9; 
+    margin: 10px 0;
+    width: 100%; 
+}
+
+.submit {
+    background-color: #718f8f;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.reset {
+    background-color: #718f8f;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.validate {
+    background-color: #405a5a;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: #e3eeee;
+    padding: 50px;
+    border-radius: 16px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    gap: 20px;
+}
+
+.table {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    border-radius: 5px;
+}
+
+.table-item {
+    padding: 8px 16px;
+    border-bottom: 1px solid #ddd;
+}
