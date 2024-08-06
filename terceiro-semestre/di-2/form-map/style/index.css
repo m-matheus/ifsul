@@ -115,3 +115,13 @@ td,th{
     border: ridge #ccc 1px;
     padding: 4px;
 }
+
+#removeButton {
+    background-color: #718f8f;
+    color: white;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 15px;
+}

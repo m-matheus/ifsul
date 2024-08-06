@@ -53,4 +53,41 @@ document.addEventListener('DOMContentLoaded', function() {
             </tbody>
         </table>`;
     });
+
+    document.getElementById('removeButton').addEventListener('click', function() {
+        if (formDataArray.length > 0) {
+            formDataArray.shift(); // Remove the oldest order
+            outputDiv.innerHTML = `
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Order Number</th>
+                <th>Date</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Product Name</th>
+                <th>Product Category</th>
+                <th>Product Model</th>
+                <th>Service Type</th>
+            </tr>
+        </thead>
+        <tbody>
+            ${formDataArray.map(data => {
+                return `<tr class="table-item">
+                    <td>${data.orderNumber}</td>
+                    <td>${data.date.toLocaleDateString()}</td>
+                    <td>${data.name}</td>
+                    <td>${data.email}</td>
+                    <td>${data.phone}</td>
+                    <td>${data.productName}</td>
+                    <td>${data.productCategory}</td>
+                    <td>${data.productModel}</td>
+                    <td>${data.serviceType}</td>
+                </tr>`;
+            }).join('')}
+        </tbody>
+    </table>`;
+        }
+    });
 });
