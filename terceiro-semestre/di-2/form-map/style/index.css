@@ -13,7 +13,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 98vh;
+    height: 100%;
 
     font-family: 'Roboto', sans-serif;
     background-image: radial-gradient(circle, #c9c9c9, #718f8f);
@@ -98,10 +98,20 @@ body {
     list-style-type: none;
     padding: 0;
     margin: 0;
-    border-radius: 5px;
+    border-collapse: collapse;
+    background: #fcffff;
+    width: min(1000px);
+    border: ridge #ccc 1px;
+
 }
 
 .table-item {
-    padding: 8px 16px;
-    border-bottom: 1px solid #ddd;
+    padding: 18px 16px;
+    text-align: center;
+}
+
+
+td,th{
+    border: ridge #ccc 1px;
+    padding: 4px;
 }
