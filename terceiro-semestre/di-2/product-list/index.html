@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form</title>
+    <link rel="stylesheet" href="style/index.css">
+    <script src="script/index.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h2>Product Registration</h2>
+        <div class="form-wrapper">
+            <form action="" class="form">
+                <label for="productName">Product Name:</label>
+                <input type="text" name="productName" id="productName" placeholder="Product name here" required>
+                
+                <label for="productCategory">Category:</label>
+                <select name="productCategory" id="productCategory" required>
+                    <option value="">Select</option>
+                    <option value="electronics">Electronics</option>
+                    <option value="furniture">Furniture</option>
+                    <option value="clothing">Clothing</option>
+                    <option value="food">Food</option>
+                    <option value="books">Books</option>
+                </select>
+                
+                <label for="productPrice">Price:</label>
+                <input type="number" name="productPrice" id="productPrice" step="0.01" required placeholder="The price of the product">
+                
+                <label for="productQuantity">Stock Quantity:</label>
+                <input type="number" name="productQuantity" id="productQuantity" required placeholder="Quantity of products">
+                
+                <label for="productDescription">Description:</label>
+                <textarea name="productDescription" id="productDescription" rows="4" required></textarea>
+                
+                <button class="submit" type="submit">Submit</button>
+                <button class="reset" type="reset">Reset</button>
+                <span class="divider"></span>
+                <button class="validate" type="button">Validate</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
