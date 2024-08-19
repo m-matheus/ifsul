@@ -1,38 +1,64 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const validateButton = document.querySelector('.validate');
-    const form = document.querySelector('.form');
-    const outputDiv = document.createElement('div');
+// index.js
 
-    outputDiv.style.padding = '10px';
-    outputDiv.style.marginTop = '16px';
-    outputDiv.style.borderRadius = '8px';
-    
-    form.after(outputDiv);
+document.addEventListener('DOMContentLoaded', () => {
+    const productForm = document.querySelector('.form');
+    const productList = document.querySelector('.product-list');
+    const productNameInput = document.querySelector('#productName');
 
-    validateButton.addEventListener('click', function(e) {
-        e.preventDefault();
+    // Função para carregar produtos do localStorage
+    function loadProducts() {
+        const products = JSON.parse(localStorage.getItem('products')) || [];
+        return products;
+    }
 
-        let isAllFilled = true;
-        let formDataList = document.createElement('ul');
-        formDataList.className = 'custom-list';
+    // Função para salvar produtos no localStorage
+    function saveProducts(products) {
+        localStorage.setItem('products', JSON.stringify(products));
+    }
 
-        form.querySelectorAll('input, select, textarea').forEach(input => {
-            if (!input.value) {
-                isAllFilled = false;
-            } else {
-                let listItem = document.createElement('li');
-                listItem.className = 'custom-list-item';
-                listItem.textContent = `${input.name}: ${input.value}`;
-                formDataList.appendChild(listItem);
-            }
+    // Função para renderizar a lista de produtos
+    function renderProducts() {
+        const products = loadProducts();
+        productList.innerHTML = '';
+        products.forEach((product, index) => {
+            const li = document.createElement('li');
+            li.textContent = product;
+            const deleteButton = document.createElement('button');
+            deleteButton.textContent = 'Delete';
+            deleteButton.addEventListener('click', () => {
+                deleteProduct(index);
+            });
+            li.appendChild(deleteButton);
+            productList.appendChild(li);
         });
+    }
 
-        if (isAllFilled) {
-            outputDiv.innerHTML = '';
-            outputDiv.appendChild(formDataList);
-            outputDiv.style.border = '1px solid #ccc';
-        } else {
-            alert('Please fill in all the fields.');
+    // Função para adicionar um novo produto
+    function addProduct(product) {
+        const products = loadProducts();
+        products.push(product);
+        saveProducts(products);
+        renderProducts();
+    }
+
+    // Função para deletar um produto
+    function deleteProduct(index) {
+        const products = loadProducts();
+        products.splice(index, 1);
+        saveProducts(products);
+        renderProducts();
+    }
+
+    // Evento de submissão do formulário
+    productForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+        const productName = productNameInput.value.trim();
+        if (productName) {
+            addProduct(productName);
+            productNameInput.value = '';
         }
     });
+
+    // Carregar e renderizar produtos ao carregar a página
+    renderProducts();
 });
