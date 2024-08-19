@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const productForm = document.querySelector('.form');
     const productList = document.querySelector('.product-list');
     const productNameInput = document.querySelector('#productName');
+    const productCategoryInput = document.querySelector('#productCategory');
 
     // Função para carregar produtos do localStorage
     function loadProducts() {
@@ -22,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
         productList.innerHTML = '';
         products.forEach((product, index) => {
             const li = document.createElement('li');
-            li.textContent = product;
+            li.textContent = `Name: ${product.name}, Category: ${product.category}`;
             const deleteButton = document.createElement('button');
             deleteButton.textContent = 'Delete';
             deleteButton.addEventListener('click', () => {
@@ -53,9 +54,15 @@ document.addEventListener('DOMContentLoaded', () => {
     productForm.addEventListener('submit', (event) => {
         event.preventDefault();
         const productName = productNameInput.value.trim();
-        if (productName) {
-            addProduct(productName);
+        const productCategory = productCategoryInput.value.trim();
+        if (productName && productCategory) {
+            const product = {
+                name: productName,
+                category: productCategory
+            };
+            addProduct(product);
             productNameInput.value = '';
+            productCategoryInput.value = '';
         }
     });
 
