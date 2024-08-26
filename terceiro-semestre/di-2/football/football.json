@@ -1,0 +1,150 @@
+{
+    "match": {
+      "team1": {
+        "name": "Team A",
+        "players": [
+          {
+            "name": "Player 1",
+            "number": 1,
+            "position": "Goalkeeper",
+            "photo": "url_of_photo_1"
+          },
+          {
+            "name": "Player 2",
+            "number": 2,
+            "position": "Defender",
+            "photo": "url_of_photo_2"
+          },
+          {
+            "name": "Player 3",
+            "number": 3,
+            "position": "Defender",
+            "photo": "url_of_photo_3"
+          },
+          {
+            "name": "Player 4",
+            "number": 4,
+            "position": "Defender",
+            "photo": "url_of_photo_4"
+          },
+          {
+            "name": "Player 5",
+            "number": 5,
+            "position": "Midfielder",
+            "photo": "url_of_photo_5"
+          },
+          {
+            "name": "Player 6",
+            "number": 6,
+            "position": "Midfielder",
+            "photo": "url_of_photo_6"
+          },
+          {
+            "name": "Player 7",
+            "number": 7,
+            "position": "Midfielder",
+            "photo": "url_of_photo_7"
+          },
+          {
+            "name": "Player 8",
+            "number": 8,
+            "position": "Midfielder",
+            "photo": "url_of_photo_8"
+          },
+          {
+            "name": "Player 9",
+            "number": 9,
+            "position": "Forward",
+            "photo": "url_of_photo_9"
+          },
+          {
+            "name": "Player 10",
+            "number": 10,
+            "position": "Forward",
+            "photo": "url_of_photo_10"
+          },
+          {
+            "name": "Player 11",
+            "number": 11,
+            "position": "Forward",
+            "photo": "url_of_photo_11"
+          }
+        ]
+      },
+      "team2": {
+        "name": "Team B",
+        "players": [
+          {
+            "name": "Player 1",
+            "number": 1,
+            "position": "Goalkeeper",
+            "photo": "url_of_photo_1"
+          },
+          {
+            "name": "Player 2",
+            "number": 2,
+            "position": "Defender",
+            "photo": "url_of_photo_2"
+          },
+          {
+            "name": "Player 3",
+            "number": 3,
+            "position": "Defender",
+            "photo": "url_of_photo_3"
+          },
+          {
+            "name": "Player 4",
+            "number": 4,
+            "position": "Defender",
+            "photo": "url_of_photo_4"
+          },
+          {
+            "name": "Player 5",
+            "number": 5,
+            "position": "Midfielder",
+            "photo": "url_of_photo_5"
+          },
+          {
+            "name": "Player 6",
+            "number": 6,
+            "position": "Midfielder",
+            "photo": "url_of_photo_6"
+          },
+          {
+            "name": "Player 7",
+            "number": 7,
+            "position": "Midfielder",
+            "photo": "url_of_photo_7"
+          },
+          {
+            "name": "Player 8",
+            "number": 8,
+            "position": "Midfielder",
+            "photo": "url_of_photo_8"
+          },
+          {
+            "name": "Player 9",
+            "number": 9,
+            "position": "Forward",
+            "photo": "url_of_photo_9"
+          },
+          {
+            "name": "Player 10",
+            "number": 10,
+            "position": "Forward",
+            "photo": "url_of_photo_10"
+          },
+          {
+            "name": "Player 11",
+            "number": 11,
+            "position": "Forward",
+            "photo": "url_of_photo_11"
+          }
+        ]
+      },
+      "score": {
+        "team1": 0,
+        "team2": 0
+      }
+    }
+  }
