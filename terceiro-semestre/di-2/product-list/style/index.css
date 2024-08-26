@@ -119,6 +119,8 @@ body {
         border-radius: 8px;
         cursor: pointer;
         font-size: 15px;
+        background-color: #718f8f;
+        color: white;
     }
 }
 
