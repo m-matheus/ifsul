@@ -1,5 +1,7 @@
 package domain;
 
+import java.util.*;
+
 public class Graph {
     private int vertex; // vertices
     private int edge; // arcos
@@ -34,5 +36,57 @@ public class Graph {
     }
 
     public Graph() {
+    }
+
+    public List<Integer> depthFirstSearch(int startVertex, int value) {
+        boolean[] visited = new boolean[vertex];
+        Stack<Integer> stack = new Stack<>();
+        List<Integer> path = new ArrayList<>();
+
+        stack.push(startVertex);
+        visited[startVertex] = true;
+
+        while (!stack.isEmpty()) {
+            int currentVertex = stack.pop();
+            path.add(currentVertex);
+
+            if (currentVertex == value) {
+                return path;
+            }
+
+            for (int i = 0; i < vertex; i++) {
+                if (adjacencyMatrix[currentVertex][i] != 0 && !visited[i]) {
+                    stack.push(i);
+                    visited[i] = true;
+                }
+            }
+        }
+        return path;
+    }
+
+    public List<Integer> breadthFirstSearch(int startVertex, int value) {
+        boolean[] visited = new boolean[vertex];
+        Queue<Integer> queue = new LinkedList<>();
+        List<Integer> path = new ArrayList<>();
+
+        queue.add(startVertex);
+        visited[startVertex] = true;
+
+        while (!queue.isEmpty()) {
+            int currentVertex = queue.poll();
+            path.add(currentVertex);
+
+            if (currentVertex == value) {
+                return path;
+            }
+
+            for (int i = 0; i < vertex; i++) {
+                if (adjacencyMatrix[currentVertex][i] != 0 && !visited[i]) {
+                    queue.add(i);
+                    visited[i] = true;
+                }
+            }
+        }
+        return path;
     }
 }
