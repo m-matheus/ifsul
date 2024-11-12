@@ -1,0 +1,4 @@
+Algoritmo simétrico: Chacha20
+Nonce: qZqoOT440YFumdR0
+Contador: 0
+Algoritmo Assimétrico: RSA
