@@ -1,0 +1,74 @@
+{
+	"filmes": [
+		{
+			"titulo": "Um Sonho de Liberdade",
+			"genero": "Drama",
+			"nota": 9.3,
+			"duracao": 142
+		},
+		{
+			"titulo": "Batman: O Cavaleiro das Trevas",
+			"genero": "Ação",
+			"nota": 9.0,
+			"duracao": 152
+		},
+		{
+			"titulo": "Pulp Fiction: Tempo de Violência",
+			"genero": "Crime",
+			"nota": 8.9,
+			"duracao": 154
+		},
+		{
+			"titulo": "Forrest Gump: O Contador de Histórias",
+			"genero": "Drama",
+			"nota": 8.8,
+			"duracao": 142
+		},
+		{
+			"titulo": "A Origem",
+			"genero": "Ficção Científica",
+			"nota": 8.8,
+			"duracao": 148
+		},
+		{
+			"titulo": "Matrix",
+			"genero": "Ficção Científica",
+			"nota": 8.7,
+			"duracao": 136
+		},
+		{
+			"titulo": "Clube da Luta",
+			"genero": "Drama",
+			"nota": 8.8,
+			"duracao": 139
+		},
+		{
+			"titulo": "O Poderoso Chefão",
+			"genero": "Crime",
+			"nota": 9.2,
+			"duracao": 175
+		},
+		{
+			"titulo": "Interestelar",
+			"genero": "Ficção Científica",
+			"nota": 8.6,
+			"duracao": 169
+		},
+		{
+			"titulo": "Gladiador",
+			"genero": "Ação",
+			"nota": 8.5,
+			"duracao": 155
+		}
+	],
+	"preferencias": {
+		"generosPreferidos": [
+			"Drama",
+			"Ficção Científica",
+			"Ação"
+		],
+		"duracaoMinima": 120,
+		"duracaoMaxima": 160,
+		"qtdFilmes": 5
+	}
+}
