@@ -2,8 +2,9 @@ package br.ifsul.tads.controller;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 
-import java.util.List;
-
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.hateoas.Link;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +17,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.ifsul.tads.domain.Funcionario;
 import br.ifsul.tads.dto.FuncionarioDTO;
+import br.ifsul.tads.repository.FuncionarioRepository;
 import br.ifsul.tads.service.FuncionarioService;
 import br.ifsul.tads.utils.ValidationUtils;
 import lombok.AllArgsConstructor;
@@ -27,13 +30,18 @@ import lombok.AllArgsConstructor;
 public class FuncionarioController {
 
 	private FuncionarioService fs;
+	@Autowired
+	private FuncionarioRepository fr;
 
-	@GetMapping
-	public ResponseEntity<Object> consultarTodos() {
+	@GetMapping("{page}/{size}")
+	public ResponseEntity<Object> consultarTodos(
+		@PathVariable int page,
+		@PathVariable int size
+	) {
 		
-		List<FuncionarioDTO> funcionarios = fs.getTodos();
+		Page<Funcionario> pageResult = fr.findAll(PageRequest.of(page, size));
 		
-		return ResponseEntity.ok(funcionarios);
+		return ResponseEntity.ok(pageResult);
 	}
 	
 	@GetMapping("{id}")
