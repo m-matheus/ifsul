@@ -20,26 +20,31 @@ public final class NamesUtils {
 	public static String getRandomName() {
 
 		Random r = new Random();
+		int randomIntValue = r.nextInt(_names.length);
+		int randomIntValue2 = r.nextInt(_lastNames.length);
 
-		/**
-		 * TODO Gera uma combinação aleatória de um nome + sobrenome
-		 */
-
-		int randomIntValue = r.nextInt(20);
-
-		final String generatedName = String.format("%s %s", _names[0], _lastNames[0]);
+		final String generatedName = String.format("%s %s", _names[randomIntValue], _lastNames[randomIntValue2]);
 
 		return generatedName;
 	}
 
 	public static String getRandomProfession() {
 
-		/**
-		 * TODO Implementar a lógica
-		 */
+		Random r = new Random();
+		int randomIntValue = r.nextInt(_professions.length);
 
-		final String profession = _professions[0];
+		final String profession = _professions[randomIntValue];
 
-		return "";
+		return profession;
+	}
+
+	public static double getRandomSalario() {
+
+		Random r = new Random();
+		int randomIntValue = r.nextInt(2000, 20000);
+
+		final double salario = randomIntValue;
+
+		return salario;
 	}
 }
