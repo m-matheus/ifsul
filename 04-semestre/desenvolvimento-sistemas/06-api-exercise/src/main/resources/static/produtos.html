@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+	<title>Desenvolvimento de Sistemas Computacionais</title>
+
+	<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+</head>
+
+<body>
+	<div class="container">
+
+		<h1>Produtos</h1>
+
+		<form action="/api/produtos" method="get" id="formListar">
+			<input type="submit" value="Listar os produtos" />
+		</form>
+
+		<div id="resultado"></div>
+
+	</div>
+
+	<script>
+		$("#formListar").submit(function (event) {
+			event.preventDefault();
+
+			var $form = $(this),
+				// term = $form.find("input[name='id_pedido']").val(),
+				url = $form.attr("action");
+
+			// var post = $.post(url, {id_pedido: term});
+			var post = $.get(url);
+
+			post.done(function (data) {
+		
+				$("#resultado").empty();
+				
+				var produtos = data;
+				
+				produtos.forEach(v => {
+				
+					var p = document.createElement("p");
+					
+					p.innerHTML = `${v.nome} <br/> ${v.preco} <br/> ${v.descricao}`;
+					
+					$("#resultado").append(p);
+					
+				});				
+			});
+		});
+	</script>
+</body>
+
+</html>
